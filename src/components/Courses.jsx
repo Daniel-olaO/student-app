@@ -1,6 +1,7 @@
 
 import {useState, useEffect} from 'react';
 import {Card, Row, Container, Accordion} from 'react-bootstrap';
+import Loading from './Loading';
 
 const Course = () => {
     let [courses, setCourses] = useState([]);
@@ -33,23 +34,19 @@ const Course = () => {
                             </Accordion>
                         ))
                     }
+                    {courses.length === 0 &&(
+                        <Card>
+                            <Card.Body>
+                                <Card.Body>no courses found...</Card.Body>
+                            </Card.Body>
+                        </Card>
+                    )}
                 </Row>
             </Container>  
         )
     }
     else {
-        return(
-            <Container>
-                <Row>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Loading Courses</Card.Title>
-                            <Card.Text>Please wait...</Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Row>
-            </Container>
-        )
+        return <Loading />
     }
 }
 

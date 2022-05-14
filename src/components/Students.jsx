@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import {Container, Row, Card} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
+import Loading from './Loading';
 
 const Students = () => {
     let history = useHistory();
@@ -16,43 +17,37 @@ const Students = () => {
             setLoading(false);
             setStudents(data);
         })
+        .catch((err) => {
+            setLoading(false);
+            console.log(err);
+        })
     },[])
 
     if(!loading) {
-        if(students != null) {
-            return(
-                <Container>
-                    <Row>
-                        {
-                            students.map((student) =>(
-                                <Card Key={student.studentId} onClick={()=>history.push(`url/${student.studentId}`)}>
-                                    <Card.Title>{student.firstName} {student.lastName}</Card.Title>
-                                    <Card.Body>{student.studentId}</Card.Body>
-                                </Card>
-                            ))
-                        }
-                    </Row>
-                </Container>
-            )
-        }
-        else {
-            return(
-                <>
-                    <Container>
-                        <Row>
-                            <Card>
-                                <Card.Body>
-                                    <Card.Text>No Student Found</Card.Text>
-                                </Card.Body>
+        return(
+            <Container>
+                <Row>
+                    {
+                        students.map((student) =>(
+                            <Card Key={student.studentId} onClick={()=>history.push(`url/${student.studentId}`)}>
+                                <Card.Title>{student.firstName} {student.lastName}</Card.Title>
+                                <Card.Body>{student.studentId}</Card.Body>
                             </Card>
-                        </Row>
-                    </Container>
-                </>
-            )
-        }    
+                        ))
+                    }
+                    {students.length === 0 &&(
+                        <Card>
+                            <Card.Body>
+                                <Card.Text>no students found..</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    )}
+                </Row>
+            </Container>
+        )    
     }
     else {
-        
+        return <Loading />
     }
 }
 
