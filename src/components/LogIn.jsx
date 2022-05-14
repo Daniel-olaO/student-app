@@ -22,7 +22,7 @@ const LogIn = () => {
         e.preventDefault();
         const response = await login({username, password});
         console.log(response)
-        if (response.token) {
+        if (response.ok) {
             // localStorage.setItem('accessToken', response['token']);
             // localStorage.setItem('user', JSON.stringify(response['user']));
             console.log('success');
