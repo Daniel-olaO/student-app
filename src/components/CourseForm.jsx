@@ -2,23 +2,22 @@ import { React, useState} from 'react';
 import { Button, Modal, Form} from 'react-bootstrap';
 
 
-async function addStudent(student){
+async function addCourse(course){
     return fetch('url',{
         headers: {
             'Content-Type': 'application/json'
         },
         method: 'POST',
-        body: JSON.stringify(student)
+        body: JSON.stringify(course)
     })
     .then(data=> console.log(data))
     .catch(err=> console.log(err))
 }
 const StudentForm = () => {
   const [show, setShow] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [code, setCode] = useState("");
+  const [name, setName] = useState("");
+  const [professor, setProfessor] = useState("");
   const [program, setProgram] = useState("");
   const [message, setMessage] = useState("");
 
@@ -27,7 +26,7 @@ const StudentForm = () => {
   const handleSubmit = async (e) =>{
     e.preventDefault();
     
-    const response = await addStudent({firstName, lastName, email, phone, program});
+    const response = await addCourse({code, name, professor, program})
 
     if(response.ok) {
         setMessage("Student Added!");
@@ -48,26 +47,22 @@ const StudentForm = () => {
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3">
-                        <Form.Label>First Name:</Form.Label>
-                        <Form.Control type="text" placeholder="FirstName" value={firstName} onChange={(e)=>setFirstName(e.target.value)} autoFocus required/>
+                        <Form.Label>Code:</Form.Label>
+                        <Form.Control type="text" placeholder="CSC" value={code} onChange={(e)=>setCode(e.target.value)} autoFocus required/>
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label>Last Name:</Form.Label>
-                        <Form.Control type="text" placeholder="LatName" value={lastName} onChange={(e)=>setLastName(e.target.value)} required/>
+                        <Form.Label>Name:</Form.Label>
+                        <Form.Control type="text" placeholder="name..." value={name} onChange={(e)=>setName(e.target.value)} required/>
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label>Email:</Form.Label>
-                        <Form.Control type="text" placeholder="name@example.ca" value={email} onChange={(e)=>{setEmail(e.target.value)}} required/>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Phone:</Form.Label>
-                        <Form.Control type="tel" placeholder="111-234-5678" value={phone} onChange={(e)=>setPhone(e.target.value)} required/>
+                        <Form.Label>Professor:</Form.Label>
+                        <Form.Control type="text" placeholder="Professor" value={professor} onChange={(e)=>{setProfessor(e.target.value)}} required/>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Program:</Form.Label>
                         <Form.Control type="tel" placeholder="Progam..." value={program} onChange={(e)=>setProgram(e.target.value)} required/>
                     </Form.Group>
-                    <Button variant="primary" type="submit">Add Student</Button>
+                    <Button variant="primary" type="submit">Add Course</Button>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
