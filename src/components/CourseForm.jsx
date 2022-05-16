@@ -3,7 +3,7 @@ import { Button, Modal, Form} from 'react-bootstrap';
 
 
 async function addCourse(course){
-    return fetch('url',{
+    return fetch('http://localhost:8080/api/courses/addCourse',{
         headers: {
             'Content-Type': 'application/json'
         },

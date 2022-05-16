@@ -3,7 +3,7 @@ import { Button, Modal, Form} from 'react-bootstrap';
 
 
 async function addStudent(student){
-    return fetch('url',{
+    return fetch('http://localhost:8080/api/students/addStudent',{
         headers: {
             'Content-Type': 'application/json'
         },
@@ -28,8 +28,8 @@ const StudentForm = () => {
     e.preventDefault();
     
     const response = await addStudent({firstName, lastName, email, phone, program});
-
-    if(response.ok) {
+    console.log(response)
+    if(response.status === 201) {
         setMessage("Student Added!");
     }
     else {
