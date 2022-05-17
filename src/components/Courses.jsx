@@ -17,7 +17,11 @@ const Course = () => {
         })
     }, []);
 
-    if(!loading){
+    if(loading){
+        return <Loading />
+        
+    }
+    else {
         return(
             <Container>
                 <Row>
@@ -44,9 +48,6 @@ const Course = () => {
                 </Row>
             </Container>  
         )
-    }
-    else {
-        return <Loading />
     }
 }
 

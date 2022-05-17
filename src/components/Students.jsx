@@ -23,7 +23,10 @@ const Students = () => {
         })
     },[])
 
-    if(!loading) {
+    if(loading) {
+        return <Loading />
+    }
+    else {
         return(
             <Container>
                 <Row>
@@ -44,10 +47,7 @@ const Students = () => {
                     )}
                 </Row>
             </Container>
-        )    
-    }
-    else {
-        return <Loading />
+        )
     }
 }
 

@@ -3,8 +3,8 @@ import {useState} from 'react';
 import {Container, Row, Form, Button} from 'react-bootstrap';
 
 async function login(user){
-    console.log(user)
-    return fetch('http://localhost:8080/api/users/login',{
+    const baseUrl = process.env.API_BASE_URL || 'http://localhost:8080';
+    return fetch(`${baseUrl}/api/users/login`,{
         headers:{
             'Content-Type':'application/json'
         },

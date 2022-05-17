@@ -1,10 +1,11 @@
 import {useState, useEffect} from 'react';
 import {Container, Row, Card, Badge} from 'react-bootstrap';
 import {useParams} from 'react-router-dom';
+import Loading from './Loading';
 
 const Student = () => {
   let {id} = useParams();
-  let [student, setStudent] = useState(null);
+  let [student, setStudent] = useState([]);
   let [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,12 +18,14 @@ const Student = () => {
     })
   },[]);
 
-  if(!loading){
-      if(student != null){
-          return(
-              <>
-                <Container>
-                    <Row>
+    if(loading){       
+        return <Loading />
+    }
+    else {
+        return(
+            <Container>
+                <Row>
+                    {
                         <Card Key={student.studentId}>
                             <Card.Title>{student.firstName} {student.lastName}</Card.Title>
                             <Card.Body>
@@ -37,39 +40,14 @@ const Student = () => {
                                 }
                             </Card.Body>
                         </Card>
-                    </Row>
-                </Container>
-              </>
-          )
-      }
-      else{
-          return (
-              <>
-                <Container>
-                    <Row>
+                    }
+                    {student.length === 0 &&(
                         <Card>
                             <Card.Body>Unable to find student with the Id: {id}</Card.Body>
                         </Card>
-                    </Row>
-                </Container>
-              </>
-          )
-      }
-  }
-  else {
-        return(
-            <>
-                <Container>
-                    <Row>
-                        <Card>
-                            <Card.Body>
-                                <Card.Title>Loading Student's details</Card.Title>
-                                <Card.Text>Please wait...</Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Row>
-                </Container>
-            </>
+                    )}
+                </Row>
+            </Container>
         )
     }
 }
