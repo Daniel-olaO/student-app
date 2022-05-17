@@ -1,10 +1,37 @@
 import './App.css';
-import CourseForm from './components/CourseForm';
-
+import { Col, Container, Row} from 'react-bootstrap';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import {Course, Courses, Students, Student, Login, NotFound} from './components'
 function App() {
   return (
     <div className="App">
-      <CourseForm />
+
+      <Container>
+        <Row>
+          <Col>
+            <Switch>
+              <Route exact path = '/'>
+                <Login />
+              </Route>
+              <Route exact path = '/student'>
+                <Students />
+              </Route>
+              <Route exact path = '/course'>
+                <Courses />
+              </Route>
+              <Route exact path = '/course/:id'>
+                <Course />
+              </Route>
+              <Route exact path = '/student/:id'>
+                <Student />
+              </Route>
+              <Route>
+                <NotFound />
+              </Route>
+            </Switch>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
