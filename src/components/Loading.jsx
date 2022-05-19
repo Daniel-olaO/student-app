@@ -1,7 +1,7 @@
 import React from 'react'
 import {Container, Row, Card} from 'react-bootstrap';
 
-const  = () => {
+const Loading = () => {
   return (
     <Container>
         <Row>
@@ -16,4 +16,4 @@ const  = () => {
   )
 }
 
-export default 
+export default Loading;
