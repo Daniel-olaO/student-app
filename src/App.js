@@ -1,5 +1,5 @@
 import './App.css';
-import { Col, Container, Row} from 'react-bootstrap';
+import {Col, Container, Row} from 'react-bootstrap';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import Course from './components/Course';
 import Courses from './components/Courses';
