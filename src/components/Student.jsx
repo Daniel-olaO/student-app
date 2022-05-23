@@ -5,7 +5,7 @@ import Loading from './Loading';
 
 const Student = () => {
   let {id} = useParams();
-  let [student, setStudent] = useState([]);
+  let [student, setStudent] = useState({});
   let [loading, setLoading] = useState(true);
 
   useEffect(() => {
