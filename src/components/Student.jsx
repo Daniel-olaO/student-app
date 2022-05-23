@@ -4,9 +4,15 @@ import {useParams} from 'react-router-dom';
 import Loading from './Loading';
 
 const Student = () => {
+<<<<<<< HEAD
   const {id} = useParams();
   const [student, setStudent] = useState({});
   const [loading, setLoading] = useState(true);
+=======
+  let {id} = useParams();
+  let [student, setStudent] = useState({});
+  let [loading, setLoading] = useState(true);
+>>>>>>> master
 
   useEffect(() => {
     setLoading(true);
