@@ -1,11 +1,10 @@
-import {useState, useEffect} from 'react';
+import {React, useState, useEffect} from 'react';
 import {Container, Row, Card} from 'react-bootstrap';
 import {Link} from 'react-router';
 import Loading from './Loading';
 import StudentForm from './StudentForm';
 
 const Students = () => {
-  const history = useHistory();
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -32,10 +31,16 @@ const Students = () => {
         <Row>
           {
             students.map((student) =>(
-              <Card Key={student.studentId} Link to={`url/${student.studentId}`}>
-                <Card.Title>{student.firstName} {student.lastName}</Card.Title>
-                <Card.Body>{student.studentId}</Card.Body>
-              </Card>
+              <Link Key={student.studentId}
+                to={`url/${student.studentId}`}>
+                <Card>
+                  <Card.Title>
+                    {student.firstName} {student.lastName}
+                  </Card.Title>
+                  <Card.Body>{student.studentId}</Card.Body>
+                </Card>
+              </Link>
+
             ))
           }
           {students.length === 0 &&(

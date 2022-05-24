@@ -1,7 +1,12 @@
+/* eslint-disable valid-jsdoc */
 import {React, useState} from 'react';
 import {Button, Modal, Form} from 'react-bootstrap';
 
 
+/**
+ * @params {object} course
+ * @returns fetch
+ */
 async function addCourse(course) {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8080';
   return fetch(`${baseUrl}/api/courses/addCourse`, {
@@ -48,21 +53,34 @@ const StudentForm = () => {
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Code:</Form.Label>
-              <Form.Control type="text" placeholder="CSC" value={code} onChange={(e)=>setCode(e.target.value)} autoFocus required/>
+              <Form.Control type="text"
+                placeholder="CSC101"
+                value={code}
+                onChange={(e)=>setCode(e.target.value)} autoFocus required/>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Name:</Form.Label>
-              <Form.Control type="text" placeholder="name..." value={name} onChange={(e)=>setName(e.target.value)} required/>
+              <Form.Control type="text"
+                placeholder="name..."
+                value={name}
+                onChange={(e)=>{
+                  setName(e.target.value);
+                }} required/>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Professor:</Form.Label>
-              <Form.Control type="text" placeholder="Professor" value={professor} onChange={(e)=>{
-                setProfessor(e.target.value);
-              }} required/>
+              <Form.Control type="text"
+                placeholder="Professor"
+                value={professor} onChange={(e)=>{
+                  setProfessor(e.target.value);
+                }} required/>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Program:</Form.Label>
-              <Form.Control type="tel" placeholder="Progam..." value={program} onChange={(e)=>setProgram(e.target.value)} required/>
+              <Form.Control type="text" placeholder="ABC"
+                value={program} onChange={(e)=>{
+                  setProgram(e.target.value);
+                }} required/>
             </Form.Group>
             <Button variant="primary" type="submit">Add Course</Button>
           </Form>

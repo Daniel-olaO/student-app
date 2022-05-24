@@ -1,24 +1,19 @@
-import {useState, useEffect} from 'react';
+import {React, useState, useEffect} from 'react';
 import {Container, Row, Card, Badge} from 'react-bootstrap';
 import {useParams} from 'react-router-dom';
 import Loading from './Loading';
 
 const Student = () => {
-<<<<<<< HEAD
   const {id} = useParams();
   const [student, setStudent] = useState({});
   const [loading, setLoading] = useState(true);
-=======
-  let {id} = useParams();
-  let [student, setStudent] = useState({});
-  let [loading, setLoading] = useState(true);
->>>>>>> master
+
 
   useEffect(() => {
     setLoading(true);
     fetch(`url/${id}`)
         .then((response) => response.json())
-        .then((data) =>{
+        .then((data) => {
           setLoading(false);
           setStudent(data);
         });
@@ -39,14 +34,16 @@ const Student = () => {
                 <Card.Text>Phone: {student.phone}</Card.Text>
                 <Card.Text>Program: {student.program}</Card.Text>
                 {
-                  student.courses.map((course)=>{
-                    <Badge Key={course.courseId} bg="secondary">{course.name}</Badge>;
+                  student.courses.map((course) => {
+                    <Badge Key={course.courseId} bg="secondary">
+                      {course.name}
+                    </Badge>;
                   })
                 }
               </Card.Body>
             </Card>
           }
-          {student.length === 0 &&(
+          {student.length === 0 && (
             <Card>
               <Card.Body>Unable to find student with the Id: {id}</Card.Body>
             </Card>

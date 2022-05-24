@@ -1,5 +1,4 @@
-
-import {useState, useEffect} from 'react';
+import {React, useState, useEffect} from 'react';
 import {Card, Row, Container, Accordion} from 'react-bootstrap';
 import Loading from './Loading';
 import CourseForm from './CourseForm';
@@ -28,7 +27,9 @@ const Course = () => {
             courses.map((course) =>(
               <Accordion defaultActiveKey="0" key={course.code}>
                 <Accordion.Item>
-                  <Accordion.Header>{course.code}: {course.name}</Accordion.Header>
+                  <Accordion.Header>
+                    {course.code}: {course.name}
+                  </Accordion.Header>
                   <Accordion.Body>
                     {course.professor}
                     {course.program}
