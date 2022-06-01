@@ -18,5 +18,7 @@
         "react"
     ],
     "rules": {
+        "require-jsdoc":0
     }
+
 }
