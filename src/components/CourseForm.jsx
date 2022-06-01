@@ -1,12 +1,7 @@
-/* eslint-disable valid-jsdoc */
 import {React, useState} from 'react';
 import {Button, Modal, Form} from 'react-bootstrap';
 
 
-/**
- * @params {object} course
- * @returns fetch
- */
 async function addCourse(course) {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8080';
   return fetch(`${baseUrl}/api/courses/addCourse`, {

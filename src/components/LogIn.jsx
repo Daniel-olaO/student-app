@@ -1,12 +1,7 @@
-/* eslint-disable valid-jsdoc */
 import {React, useState} from 'react';
 import {Container, Row, Form, Button} from 'react-bootstrap';
 
 
-/**
- * @params {object} user
- * @returns fetch
- */
 async function login(user) {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8080';
   return fetch(`${baseUrl}/api/users/login`, {
