@@ -1,6 +1,7 @@
 import './App.css';
+import React from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
-import {Redirect, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import Course from './components/Course';
 import Courses from './components/Courses';
 import Student from './components/Student';
