@@ -1,54 +1,60 @@
-import {useState, useEffect} from 'react';
+import {React, useState, useEffect} from 'react';
 import {Container, Row, Card} from 'react-bootstrap';
-import {useHistory} from 'react-router-dom';
+import {Link} from 'react-router';
 import Loading from './Loading';
+import StudentForm from './StudentForm';
 
 const Students = () => {
-    let history = useHistory();
-    let [students, setStudents] = useState([]);
-    let [loading, setLoading] = useState(true);
-    
-    useEffect(() => {
-        setLoading(true);
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-        fetch('url')
-        .then(response => response.json())
-        .then(data => {
-            setLoading(false);
-            setStudents(data);
+  useEffect(() => {
+    setLoading(true);
+
+    fetch('url')
+        .then((response) => response.json())
+        .then((data) => {
+          setLoading(false);
+          setStudents(data);
         })
         .catch((err) => {
-            setLoading(false);
-            console.log(err);
-        })
-    },[])
+          setLoading(false);
+          console.log(err);
+        });
+  }, []);
 
-    if(loading) {
-        return <Loading />
-    }
-    else {
-        return(
-            <Container>
-                <Row>
-                    {
-                        students.map((student) =>(
-                            <Card Key={student.studentId} onClick={()=>history.push(`url/${student.studentId}`)}>
-                                <Card.Title>{student.firstName} {student.lastName}</Card.Title>
-                                <Card.Body>{student.studentId}</Card.Body>
-                            </Card>
-                        ))
-                    }
-                    {students.length === 0 &&(
-                        <Card>
-                            <Card.Body>
-                                <Card.Text>no students found..</Card.Text>
-                            </Card.Body>
-                        </Card>
-                    )}
-                </Row>
-            </Container>
-        )
-    }
-}
+  if (loading) {
+    return <Loading />;
+  } else {
+    return (
+      <Container>
+        <Row>
+          {
+            students.map((student) =>(
+              <Link Key={student.studentId}
+                to={`url/${student.studentId}`}>
+                <Card>
+                  <Card.Title>
+                    {student.firstName} {student.lastName}
+                  </Card.Title>
+                  <Card.Body>{student.studentId}</Card.Body>
+                </Card>
+              </Link>
 
-export default Students
+            ))
+          }
+          {students.length === 0 &&(
+            <Card>
+              <Card.Body>
+                <Card.Text>no students found..</Card.Text>
+              </Card.Body>
+            </Card>
+          )}
+          <StudentForm />
+        </Row>
+      </Container>
+    );
+  }
+};
+
+export default Students;

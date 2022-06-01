@@ -1,7 +1,14 @@
 import './App.css';
-import { Col, Container, Row} from 'react-bootstrap';
-import {Redirect, Route, Switch} from 'react-router-dom';
-import {Course, Courses, Students, Student, Login, NotFound} from './components'
+import React from 'react';
+import {Col, Container, Row} from 'react-bootstrap';
+import {Route, Switch} from 'react-router-dom';
+import Course from './components/Course';
+import Courses from './components/Courses';
+import Student from './components/Student';
+import NotFound from './components/NotFound';
+import Students from './components/Students';
+import LogIn from './components/LogIn';
+
 function App() {
   return (
     <div className="App">
@@ -11,7 +18,7 @@ function App() {
           <Col>
             <Switch>
               <Route exact path = '/'>
-                <Login />
+                <LogIn />
               </Route>
               <Route exact path = '/student'>
                 <Students />
