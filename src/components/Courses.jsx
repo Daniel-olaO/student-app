@@ -1,9 +1,10 @@
 import {React, useState, useEffect} from 'react';
 import {Card, Row, Container, Accordion} from 'react-bootstrap';
+import {withRouter} from 'react-router-dom';
 import Loading from './Loading';
 import CourseForm from './CourseForm';
 
-const Course = () => {
+const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -52,4 +53,4 @@ const Course = () => {
   }
 };
 
-export default Course;
+export default withRouter(Courses);

@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from 'react';
 import {Container, Row, Card, Badge} from 'react-bootstrap';
+import {withRouter} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 import Loading from './Loading';
 
@@ -54,4 +55,4 @@ const Student = () => {
   }
 };
 
-export default Student;
+export default withRouter(Student);

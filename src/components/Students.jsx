@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from 'react';
 import {Container, Row, Card} from 'react-bootstrap';
+import {withRouter} from 'react-router-dom';
 import {Link} from 'react-router';
 import Loading from './Loading';
 import StudentForm from './StudentForm';
@@ -57,4 +58,4 @@ const Students = () => {
   }
 };
 
-export default Students;
+export default withRouter(Students);

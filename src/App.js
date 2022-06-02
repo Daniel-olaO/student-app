@@ -7,6 +7,7 @@ import Student from './components/Student';
 import NotFound from './components/NotFound';
 import Students from './components/Students';
 import LogIn from './components/LogIn';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -17,9 +18,18 @@ function App() {
           <Col>
             <Routes>
               <Route path="/" element={<LogIn />} />
-              <Route path="/students" element={<Students />} />
-              <Route path="/student/:id" element={<Student />} />
-              <Route path="/courses" element={<Courses />} />
+              <ProtectedRoute path="/students"
+                component={Students}
+                isAuth={false}
+              />
+              <ProtectedRoute path="/student/:id"
+                component={Student}
+                isAuth={false}
+              />
+              <ProtectedRoute path="/courses"
+                component={Courses}
+                isAuth={false}
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Col>
