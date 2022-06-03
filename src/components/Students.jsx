@@ -1,7 +1,6 @@
 import {React, useState, useEffect} from 'react';
 import {Container, Row, Card} from 'react-bootstrap';
-import {withRouter} from 'react-router-dom';
-import {Link} from 'react-router';
+// import {Link} from 'react-router';
 import Loading from './Loading';
 import StudentForm from './StudentForm';
 
@@ -32,15 +31,15 @@ const Students = () => {
         <Row>
           {
             students.map((student) =>(
-              <Link Key={student.studentId}
-                to={`url/${student.studentId}`}>
-                <Card>
-                  <Card.Title>
-                    {student.firstName} {student.lastName}
-                  </Card.Title>
-                  <Card.Body>{student.studentId}</Card.Body>
-                </Card>
-              </Link>
+              // <Link Key={student.studentId}
+              //   to={`url/${student.studentId}`}>
+              <Card Key={student.studentId}>
+                <Card.Title>
+                  {student.firstName} {student.lastName}
+                </Card.Title>
+                <Card.Body>{student.studentId}</Card.Body>
+              </Card>
+              // </Link>
 
             ))
           }
@@ -58,4 +57,4 @@ const Students = () => {
   }
 };
 
-export default withRouter(Students);
+export default Students;

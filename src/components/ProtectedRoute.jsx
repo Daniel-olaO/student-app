@@ -1,19 +1,12 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import {Route, Redirect} from 'react-router';
+import {Navigate} from 'react-router-dom';
 
-const ProtectedRoute = ({isAuth: isAuth, component: Component, ...rest}) => {
-  return (
-    <Route
-      {...rest}
-      render={(props)=>{
-        if (isAuth) {
-          return <component />;
-        } else {
-          <Redirect to={{pathname: '/', state: {from: props.location}}} />;
-        }
-      }}
-    />
-  );
+const ProtectedRoute = ({user, Children}) => {
+  if (!user) {
+    return <Navigate to='/' replace/>;
+  }
+  return children;
 };
 
 
