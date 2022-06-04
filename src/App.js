@@ -18,17 +18,29 @@ function App() {
           <Col>
             <Routes>
               <Route path="/" element={<LogIn />} />
-              <ProtectedRoute path="/students"
-                component={Students}
-                isAuth={false}
+              <Route
+                path='/students'
+                element={
+                  <ProtectedRoute user={false}>
+                    <Students />
+                  </ProtectedRoute>
+                }
               />
-              <ProtectedRoute path="/student/:id"
-                component={Student}
-                isAuth={false}
+              <Route
+                path='/student/:id'
+                element={
+                  <ProtectedRoute user={false}>
+                    <Student />
+                  </ProtectedRoute>
+                }
               />
-              <ProtectedRoute path="/courses"
-                component={Courses}
-                isAuth={false}
+              <Route
+                path='/courses'
+                element={
+                  <ProtectedRoute user={false}>
+                    <Courses />
+                  </ProtectedRoute>
+                }
               />
               <Route path="*" element={<NotFound />} />
             </Routes>
