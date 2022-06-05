@@ -2,8 +2,8 @@
 import React from 'react';
 import {Navigate} from 'react-router-dom';
 
-const ProtectedRoute = ({user, Children}) => {
-  if (!user) {
+const ProtectedRoute = ({isAuth, children}) => {
+  if (!isAuth) {
     return <Navigate to='/' replace/>;
   }
   return children;

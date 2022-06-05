@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import {React, useState} from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
 import {Route, Routes} from 'react-router-dom';
 import Courses from './components/Courses';
@@ -10,6 +10,7 @@ import LogIn from './components/LogIn';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <div className="App">
 
@@ -21,7 +22,7 @@ function App() {
               <Route
                 path='/students'
                 element={
-                  <ProtectedRoute user={false}>
+                  <ProtectedRoute isAuth={isLoggedIn}>
                     <Students />
                   </ProtectedRoute>
                 }
@@ -29,7 +30,7 @@ function App() {
               <Route
                 path='/student/:id'
                 element={
-                  <ProtectedRoute user={false}>
+                  <ProtectedRoute isAuth={isLoggedIn}>
                     <Student />
                   </ProtectedRoute>
                 }
@@ -37,7 +38,7 @@ function App() {
               <Route
                 path='/courses'
                 element={
-                  <ProtectedRoute user={false}>
+                  <ProtectedRoute isAuth={isLoggedIn}>
                     <Courses />
                   </ProtectedRoute>
                 }

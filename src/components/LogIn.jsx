@@ -3,7 +3,7 @@ import {Container, Row, Form, Button} from 'react-bootstrap';
 
 
 async function login(user) {
-  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8080';
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   return fetch(`${baseUrl}/api/users/login`, {
     headers: {
       'Content-Type': 'application/json',
@@ -21,13 +21,10 @@ const LogIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await login({username, password});
-    console.log(response);
-    if (response.ok) {
-      // localStorage.setItem('accessToken', response['token']);
-      // localStorage.setItem('user', JSON.stringify(response['user']));
+    if (response) {
       console.log('success');
     } else {
-      console.log(response);
+      console.log('fail');
     }
     setUsername('');
     setPassword('');
