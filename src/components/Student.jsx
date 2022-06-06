@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from 'react';
 import {Container, Row, Card, Badge} from 'react-bootstrap';
+
 import {useParams} from 'react-router-dom';
 import Loading from './Loading';
 

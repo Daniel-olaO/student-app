@@ -1,19 +1,22 @@
 import {React, useState, useEffect} from 'react';
 import {Container, Row, Card} from 'react-bootstrap';
-import {Link} from 'react-router';
+import {Navigate} from 'react-router';
 import Loading from './Loading';
 import StudentForm from './StudentForm';
 
 const Students = () => {
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
+  const URL = `${baseUrl}/api/students`;
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
 
-    fetch('url')
+    fetch(URL)
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           setLoading(false);
           setStudents(data);
         })
@@ -21,7 +24,7 @@ const Students = () => {
           setLoading(false);
           console.log(err);
         });
-  }, []);
+  }, [URL]);
 
   if (loading) {
     return <Loading />;
@@ -31,7 +34,7 @@ const Students = () => {
         <Row>
           {
             students.map((student) =>(
-              <Link Key={student.studentId}
+              <Navigate Key={student.studentId}
                 to={`url/${student.studentId}`}>
                 <Card>
                   <Card.Title>
@@ -39,7 +42,7 @@ const Students = () => {
                   </Card.Title>
                   <Card.Body>{student.studentId}</Card.Body>
                 </Card>
-              </Link>
+              </Navigate>
 
             ))
           }

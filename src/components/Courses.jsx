@@ -3,19 +3,21 @@ import {Card, Row, Container, Accordion} from 'react-bootstrap';
 import Loading from './Loading';
 import CourseForm from './CourseForm';
 
-const Course = () => {
+const Courses = () => {
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
+  const URL = `${baseUrl}/api/courses`;
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
     setLoading(true);
-    fetch('url')
+    fetch(URL)
         .then((response) => response.json())
         .then((data) =>{
           setLoading(false);
           setCourses(data);
         });
-  }, []);
+  }, [URL]);
 
   if (loading) {
     return <Loading />;
@@ -52,4 +54,4 @@ const Course = () => {
   }
 };
 
-export default Course;
+export default Courses;
