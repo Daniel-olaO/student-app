@@ -1,5 +1,6 @@
 import {React, useState} from 'react';
 import {Container, Row, Form, Button} from 'react-bootstrap';
+import Cookies from 'js-cookie';
 
 
 async function login(user) {
@@ -22,7 +23,8 @@ const LogIn = () => {
     e.preventDefault();
     const response = await login({username, password});
     if (response) {
-      console.log('success');
+      console.log(response);
+      Cookies.set('token', response.token);
     } else {
       console.log('fail');
     }
