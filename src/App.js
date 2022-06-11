@@ -10,6 +10,7 @@ import Students from './components/Students';
 import LogIn from './components/LogIn';
 import ProtectedRoute from './components/ProtectedRoute';
 import Homepage from './components/Homepage';
+import SignUp from './components/SignUp';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,6 +38,10 @@ function App() {
               <Route path="/"
                 element={
                   <LogIn setIsLoggedIn={setIsLoggedIn}/>
+                } />
+              <Route path='/signUp'
+                element={
+                  <SignUp/>
                 } />
               <Route
                 path='/students'
