@@ -4,20 +4,21 @@ import Students from './Students';
 import Courses from './Courses';
 
 const Homepage = () => {
-  const [content, setContent] = useState('student');
+  // make the Students component the default page
+  const [defaultPage, setDefaultPage] = useState(true);
   return (
     <>
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand>Student - App</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link onClick={()=>setContent('student')}>Students</Nav.Link>
-            <Nav.Link onClick={()=>setContent('courses')}>Courses</Nav.Link>
+            <Nav.Link onClick={()=>setDefaultPage(true)}>Students</Nav.Link>
+            <Nav.Link onClick={()=>setDefaultPage(false)}>Courses</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
-      {content === 'student' && <Students />}
-      {content === 'courses' && <Courses />}
+      {defaultPage && <Students />}
+      {!defaultPage && <Courses />}
     </>
   );
 };
