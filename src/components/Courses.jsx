@@ -1,7 +1,29 @@
 import {React, useState, useEffect} from 'react';
-import {Card, Row, Container, Accordion} from 'react-bootstrap';
+import {Card, Row, Container, Accordion, Button} from 'react-bootstrap';
 import Loading from './Loading';
 import CourseForm from './CourseForm';
+
+async function deleteCourse(code) {
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
+  return fetch(`${baseUrl}/api/courses/deleteCourse${code}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'DELETE',
+  })
+      .then((data) => data.json())
+      .catch((err)=>console.log(err));
+};
+const handleClick = async (e, code) => {
+  e.preventDefault();
+  const response = await deleteCourse(code);
+  console.log(response);
+  if (response) {
+    console.log('deleted');
+  } else {
+    console.log('not deleted');
+  }
+};
 
 const Courses = () => {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
@@ -31,6 +53,13 @@ const Courses = () => {
                 <Accordion.Item>
                   <Accordion.Header>
                     {course.code}: {course.name}
+                    <Button variant="danger"
+                      onClick={
+                        (e) => handleClick(e, course.code)
+                      }
+                    >
+                      Delete
+                    </Button>
                   </Accordion.Header>
                   <Accordion.Body>
                     {course.professor}
