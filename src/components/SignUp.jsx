@@ -1,6 +1,6 @@
 import {React, useState} from 'react';
 import {Container, Row, Form, Button} from 'react-bootstrap';
-// import {useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
 async function signUp(user) {
@@ -12,11 +12,13 @@ async function signUp(user) {
     method: 'POST',
     body: JSON.stringify(user),
   })
-      .then((data) => data.json());
+      .then((data) => data.json())
+      .catch((err)=>console.log(err));
 }
 
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,9 +29,9 @@ const SignUp = () => {
     e.preventDefault();
     const response = await signUp({username, email, password, rePassword});
     console.log(response);
-    if (response.ok) {
-      setMessage(response.message);
-      console.log(message);
+    if (response.username) {
+      setMessage('Successfully signed up!');
+      navigate('/');
     } else {
       setMessage(response.message);
       console.log(message);

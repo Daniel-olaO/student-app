@@ -8,11 +8,9 @@ import NotFound from './components/NotFound';
 import Students from './components/Students';
 import LogIn from './components/LogIn';
 import ProtectedRoute from './components/ProtectedRoute';
-<<<<<<< HEAD
-=======
-import Homepage from './components/Homepage';
+// import Homepage from './components/Homepage';
 import SignUp from './components/SignUp';
->>>>>>> 5cf3b27 (Added the signUp form)
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,9 +21,6 @@ function App() {
         <Row>
           <Col>
             <Routes>
-<<<<<<< HEAD
-              <Route path="/" element={<LogIn />} />
-=======
               <Route path="/"
                 element={
                   <LogIn setIsLoggedIn={setIsLoggedIn}/>
@@ -34,7 +29,12 @@ function App() {
                 element={
                   <SignUp/>
                 } />
->>>>>>> 5cf3b27 (Added the signUp form)
+              {/* <Route path='/home'
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <Homepage/>
+                  </ProtectedRoute>
+                } /> */}
               <Route
                 path='/students'
                 element={
