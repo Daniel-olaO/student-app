@@ -9,7 +9,7 @@ import NotFound from './components/NotFound';
 import Students from './components/Students';
 import LogIn from './components/LogIn';
 import ProtectedRoute from './components/ProtectedRoute';
-// import Homepage from './components/Homepage';
+import Homepage from './components/Homepage';
 import SignUp from './components/SignUp';
 
 
@@ -45,12 +45,12 @@ function App() {
                   <SignUp/>
                 } />
 
-              {/* <Route path='/home'
+              <Route path='/home'
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Homepage/>
                   </ProtectedRoute>
-                } /> */}
+                } />
               <Route
                 path='/students'
                 element={
