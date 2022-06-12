@@ -27,12 +27,13 @@ const LogIn = (props) => {
     e.preventDefault();
     const response = await login({username, password});
     if (response.token) {
+      console.log(response);
       const duration = new Date();
       duration.setTime(duration.getTime() + (1 * 60 * 60 * 1000));
       cookies.set('token', response.token, {path: '/', expires: duration});
       localStorage.setItem('username', response.username);
       props.setIsLoggedIn(true);
-      navigate('./students');
+      navigate('/home');
     } else {
       setMessage(response.message);
       console.log(message);
@@ -64,6 +65,7 @@ const LogIn = (props) => {
           </Form.Group>
           <Button variant="primary" type="submit">Login</Button>
         </Form>
+        <h5>New to Student App? <a href="/signUp">Create an Account</a></h5>
       </Row>
     </Container>
   );

@@ -87,7 +87,7 @@ const SignUp = () => {
           </Form.Group>
           <Button variant="primary" type="submit">Sign Up</Button>
         </Form>
-        <h5>Already have an account <a href='/'>click here</a></h5>
+        <h5>Already have an account? <a href='/'>click here</a></h5>
       </Row>
     </Container>
   );

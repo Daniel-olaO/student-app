@@ -37,14 +37,16 @@ const Students = () => {
           console.log(err);
         });
   }, [URL]);
-
-  const response = deleteStudent(id);
-  console.log(response);
-  if (response) {
-    console.log('deleted');
-  } else {
-    console.log('not deleted');
-  }
+  const handleClick = async (e, id) => {
+    e.preventDefault();
+    const response = deleteStudent(id);
+    console.log(response);
+    if (response) {
+      console.log('deleted');
+    } else {
+      console.log('not deleted');
+    }
+  };
 
   if (loading) {
     return <Loading />;
@@ -62,7 +64,7 @@ const Students = () => {
                   </Card.Title>
                   <Card.Body>{student.studentId}</Card.Body>
                   <Button variant="danger"
-                    onClick={() => deleteStudent(student.studentId)}
+                    onClick={(e) =>handleClick(e, student.studentId)}
                   >Delete</Button>
                 </Card>
               </Navigate>
