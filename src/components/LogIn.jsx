@@ -1,5 +1,7 @@
 import {React, useState} from 'react';
 import {Container, Row, Form, Button} from 'react-bootstrap';
+import {useNavigate} from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 
 async function login(user) {
@@ -14,17 +16,25 @@ async function login(user) {
       .then((data) => data.json());
 }
 
-const LogIn = () => {
+const LogIn = ({setIsLoggedIn}) => {
+  const navigate = useNavigate();
+  const cookies = new Cookies();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await login({username, password});
-    if (response) {
-      console.log('success');
+    if (response.token) {
+      const duration = new Date();
+      duration.setTime(duration.getTime() + (1 * 60 * 60 * 1000));
+      cookies.set('token', response.token, {path: '/', expires: duration});
+      setIsLoggedIn(true);
+      navigate('./students');
     } else {
-      console.log('fail');
+      setMessage(response.message);
+      console.log(message);
     }
     setUsername('');
     setPassword('');

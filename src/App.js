@@ -1,7 +1,8 @@
 import './App.css';
-import {React, useState} from 'react';
+import {React, useState, useEffect} from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
 import {Route, Routes} from 'react-router-dom';
+import Cookies from 'universal-cookie';
 import Courses from './components/Courses';
 import Student from './components/Student';
 import NotFound from './components/NotFound';
@@ -11,6 +12,16 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const cookies = new Cookies();
+
+  useEffect(() => {
+    if (cookies.get('token')) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
   return (
     <div className="App">
 
@@ -18,7 +29,10 @@ function App() {
         <Row>
           <Col>
             <Routes>
-              <Route path="/" element={<LogIn />} />
+              <Route path="/"
+                element={
+                  <LogIn setIsLoggedIn={setIsLoggedIn}/>
+                } />
               <Route
                 path='/students'
                 element={
