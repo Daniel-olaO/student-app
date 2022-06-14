@@ -5,18 +5,17 @@ import Cookies from 'universal-cookie';
 import Students from './Students';
 import Courses from './Courses';
 
-function logOut() {
-  const cookies = new Cookies();
-  const navigate = useNavigate();
-  localStorage.removeItem('username');
-  cookies.remove('token');
-  navigate('/');
-}
 
-
-const Homepage = () => {
+const Homepage = ({setIsLoggedIn}) => {
   // make the students component the default page
   const [defaultPage, setDefaultPage] = useState(true);
+
+  function logOut() {
+    const cookies = new Cookies();
+    localStorage.removeItem('username');
+    cookies.remove('token');
+    setIsLoggedIn(false);
+  }
   return (
     <>
       <Navbar bg="dark" variant="dark">

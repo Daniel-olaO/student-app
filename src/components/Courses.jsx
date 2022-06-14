@@ -14,16 +14,7 @@ async function deleteCourse(code) {
       .then((data) => data.json())
       .catch((err)=>console.log(err));
 };
-const handleClick = async (e, code) => {
-  e.preventDefault();
-  const response = await deleteCourse(code);
-  console.log(response);
-  if (response) {
-    console.log('deleted');
-  } else {
-    console.log('not deleted');
-  }
-};
+
 
 const Courses = () => {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
@@ -40,6 +31,17 @@ const Courses = () => {
           setCourses(data);
         });
   }, [URL]);
+
+  const handleClick = async (e, code) => {
+    e.preventDefault();
+    const response = await deleteCourse(code);
+    console.log(response);
+    if (response) {
+      console.log('deleted');
+    } else {
+      console.log('not deleted');
+    }
+  };
 
   if (loading) {
     return <Loading />;

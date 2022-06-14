@@ -28,7 +28,7 @@ function App() {
       setIsLoggedIn(false);
     }
   }, []);
-
+  console.log(isLoggedIn);
   return (
     <div className="App">
 
@@ -47,8 +47,8 @@ function App() {
 
               <Route path='/home'
                 element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <Homepage/>
+                  <ProtectedRoute isAuth={isLoggedIn}>
+                    <Homepage setIsLoggedIn={setIsLoggedIn}/>
                   </ProtectedRoute>
                 } />
               <Route
