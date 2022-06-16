@@ -16,9 +16,7 @@ function App() {
   const cookies = new Cookies();
 
   useEffect(() => {
-    // setIsLoggedIn(false);
     if (cookies.get('token')) {
-      console.time();
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
