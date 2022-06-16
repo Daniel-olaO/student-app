@@ -16,7 +16,7 @@ async function login(user) {
       .then((data) => data.json());
 }
 
-const LogIn = (props) => {
+const LogIn = ({setIsLoggedIn}) => {
   const navigate = useNavigate();
   const cookies = new Cookies();
   const [username, setUsername] = useState('');
@@ -30,8 +30,9 @@ const LogIn = (props) => {
       const duration = new Date();
       duration.setTime(duration.getTime() + (1 * 60 * 60 * 1000));
       cookies.set('token', response.token, {path: '/', expires: duration});
-      props.setIsLoggedIn(true);
-      navigate('./students');
+      localStorage.setItem('username', response.user);
+      setIsLoggedIn(true);
+      navigate('./home');
     } else {
       setMessage(response.message);
       console.log(message);

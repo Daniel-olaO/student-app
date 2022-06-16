@@ -20,8 +20,6 @@ function App() {
     if (cookies.get('token')) {
       console.time();
       setIsLoggedIn(true);
-      console.timeEnd();
-      console.log(isLoggedIn);
     } else {
       setIsLoggedIn(false);
     }
@@ -65,8 +63,8 @@ function App() {
               <Route
                 path='/home'
                 element={
-                  <ProtectedRoute isAuth={true}>
-                    <Homepage />
+                  <ProtectedRoute isAuth={isLoggedIn}>
+                    <Homepage setIsLoggedIn={setIsLoggedIn} />
                   </ProtectedRoute>
                 }
               />
