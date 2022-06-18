@@ -1,6 +1,6 @@
 import {React, useState} from 'react';
 import {Container, Row, Form, Button} from 'react-bootstrap';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 
@@ -65,7 +65,12 @@ const LogIn = (props) => {
           </Form.Group>
           <Button variant="primary" type="submit">Login</Button>
         </Form>
-        <h5>New to Student App? <a href="/signUp">Create an Account</a></h5>
+        <h5>
+          New to Student App?
+          <Link to='./signUp'>
+             Create an Account
+          </Link>
+        </h5>
       </Row>
     </Container>
   );

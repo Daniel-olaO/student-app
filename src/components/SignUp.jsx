@@ -1,9 +1,9 @@
 import {React, useState} from 'react';
 import {Container, Row, Form, Button} from 'react-bootstrap';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 
 
-async function signUp(user) {
+function signUp(user) {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   return fetch(`${baseUrl}/api/users/signUp`, {
     headers: {
@@ -87,7 +87,7 @@ const SignUp = () => {
           </Form.Group>
           <Button variant="primary" type="submit">Sign Up</Button>
         </Form>
-        <h5>Already have an account? <a href='/'>click here</a></h5>
+        <h5>Already have an account? <Link to ='/'>click here</Link></h5>
       </Row>
     </Container>
   );

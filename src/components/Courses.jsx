@@ -3,7 +3,7 @@ import {Card, Row, Container, Accordion, Button} from 'react-bootstrap';
 import Loading from './Loading';
 import CourseForm from './CourseForm';
 
-async function deleteCourse(code) {
+function deleteCourse(code) {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   return fetch(`${baseUrl}/api/courses/deleteCourse${code}`, {
     headers: {
@@ -32,14 +32,13 @@ const Courses = () => {
         });
   }, [URL]);
 
-  const handleClick = async (e, code) => {
-    e.preventDefault();
+  const handleClick = async (code) => {
     const response = await deleteCourse(code);
     console.log(response);
     if (response) {
-      console.log('deleted');
+      alert('deleted');
     } else {
-      console.log('not deleted');
+      alert('not deleted');
     }
   };
 
@@ -57,7 +56,7 @@ const Courses = () => {
                     {course.code}: {course.name}
                     <Button variant="danger"
                       onClick={
-                        (e) => handleClick(e, course.code)
+                        ()=>handleClick(course.code)
                       }
                     >
                       Delete

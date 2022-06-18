@@ -37,14 +37,13 @@ const Students = () => {
           console.log(err);
         });
   }, [URL]);
-  const handleClick = async (e, id) => {
-    e.preventDefault();
-    const response = deleteStudent(id);
+  const handleClick = async (id) => {
+    const response = await deleteStudent(id);
     console.log(response);
     if (response) {
-      console.log('deleted');
+      alert('deleted');
     } else {
-      console.log('not deleted');
+      alert('not deleted');
     }
   };
 
@@ -64,7 +63,7 @@ const Students = () => {
                   </Card.Title>
                   <Card.Body>{student.studentId}</Card.Body>
                   <Button variant="danger"
-                    onClick={(e) =>handleClick(e, student.studentId)}
+                    onClick={() =>handleClick(student.studentId)}
                   >Delete</Button>
                 </Card>
               </Navigate>

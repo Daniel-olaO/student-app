@@ -20,15 +20,11 @@ function App() {
   useEffect(() => {
     // setIsLoggedIn(false);
     if (cookies.get('token')) {
-      console.time();
       setIsLoggedIn(true);
-      console.timeEnd();
-      console.log(isLoggedIn);
     } else {
       setIsLoggedIn(false);
     }
   }, []);
-  console.log(isLoggedIn);
   return (
     <div className="App">
 
