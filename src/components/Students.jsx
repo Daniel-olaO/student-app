@@ -5,7 +5,7 @@ import Loading from './Loading';
 import StudentForm from './StudentForm';
 
 
-async function deleteStudent(id) {
+function deleteStudent(id) {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   return fetch(`${baseUrl}/api/students/deleteStudent${id}`, {
     headers: {

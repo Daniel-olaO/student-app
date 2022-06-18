@@ -4,7 +4,7 @@ import {useNavigate, Link} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 
-async function login(user) {
+function login(user) {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   return fetch(`${baseUrl}/api/users/login`, {
     headers: {
@@ -31,8 +31,8 @@ const LogIn = ({setIsLoggedIn}) => {
       duration.setTime(duration.getTime() + (1 * 60 * 60 * 1000));
       cookies.set('token', response.token, {path: '/', expires: duration});
 
-      localStorage.setItem('username', response.username);
-      props.setIsLoggedIn(true);
+      localStorage.setItem('username', response.user);
+      setIsLoggedIn(true);
       navigate('/home');
     } else {
       setMessage(response.message);
