@@ -34,7 +34,7 @@ const SignUp = () => {
       navigate('/');
     } else {
       setMessage(response.message);
-      console.log(message);
+      alert(message);
     }
     setUsername('');
     setEmail('');

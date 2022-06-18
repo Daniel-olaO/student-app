@@ -27,7 +27,6 @@ const LogIn = ({setIsLoggedIn}) => {
     e.preventDefault();
     const response = await login({username, password});
     if (response.token) {
-      console.log(response);
       const duration = new Date();
       duration.setTime(duration.getTime() + (1 * 60 * 60 * 1000));
       cookies.set('token', response.token, {path: '/', expires: duration});
