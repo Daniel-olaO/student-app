@@ -2,6 +2,7 @@ import {React, useState} from 'react';
 import {Container, Row, Form, Button} from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import '../App.css';
 
 
 async function login(user) {
@@ -41,11 +42,12 @@ const LogIn = ({setIsLoggedIn}) => {
   };
 
   return (
-    <Container>
+    <Container className='container'>
       <Row>
+        <h1>Log In</h1>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label>Username</Form.Label>
+            <Form.Label>Username:</Form.Label>
             <Form.Control type="text"
               name="username"
               placeholder='UserName'
@@ -55,7 +57,7 @@ const LogIn = ({setIsLoggedIn}) => {
               }} />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Password:</Form.Label>
             <Form.Control type="password"
               name="password"
               placeholder='Password'
