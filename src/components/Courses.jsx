@@ -2,7 +2,40 @@ import {React, useState, useEffect} from 'react';
 import {Card, Row, Container, Accordion} from 'react-bootstrap';
 import Loading from './Loading';
 import CourseForm from './CourseForm';
+import Cookies from 'universal-cookie';
 
+function getCourses() {
+  const cookies = new Cookies();
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
+  return fetch(`${baseUrl}/api/courses`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${cookies.get('token')}`,
+    },
+    method: 'GET',
+  })
+      .then((data) => data.json())
+      .catch((err)=>console.log(err));
+}
+
+<<<<<<< HEAD
+=======
+function deleteCourse(code) {
+  const cookies = new Cookies();
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
+  return fetch(`${baseUrl}/api/courses/deleteCourse${code}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${cookies.get('token')}`,
+    },
+    method: 'DELETE',
+  })
+      .then((data) => data.json())
+      .catch((err)=>console.log(err));
+};
+
+
+>>>>>>> 895f619 (Headers Authorization added)
 const Courses = () => {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   const URL = `${baseUrl}/api/courses`;
@@ -11,13 +44,14 @@ const Courses = () => {
 
   useEffect(()=>{
     setLoading(true);
-    fetch(URL)
-        .then((response) => response.json())
-        .then((data) =>{
-          setLoading(false);
+    getCourses()
+        .then((data) => {
           setCourses(data);
-        });
-  }, [URL]);
+          setLoading(false);
+        },
+        )
+        .catch((err)=>console.log(err));
+  }, []);
 
   if (loading) {
     return <Loading />;

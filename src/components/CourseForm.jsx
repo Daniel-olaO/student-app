@@ -1,12 +1,15 @@
 import {React, useState} from 'react';
 import {Button, Modal, Form} from 'react-bootstrap';
+import Cookies from 'universal-cookie';
 
 
 async function addCourse(course) {
+  const cookies = new Cookies();
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8080';
   return fetch(`${baseUrl}/api/courses/addCourse`, {
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Token ${cookies.get('token')}`,
     },
     method: 'POST',
     body: JSON.stringify(course),
