@@ -18,8 +18,6 @@ function getCourses() {
       .catch((err)=>console.log(err));
 }
 
-<<<<<<< HEAD
-=======
 function deleteCourse(code) {
   const cookies = new Cookies();
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
@@ -35,7 +33,6 @@ function deleteCourse(code) {
 };
 
 
->>>>>>> 895f619 (Headers Authorization added)
 const Courses = () => {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   const URL = `${baseUrl}/api/courses`;

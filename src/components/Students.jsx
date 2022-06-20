@@ -5,8 +5,7 @@ import Loading from './Loading';
 import StudentForm from './StudentForm';
 import Cookies from 'universal-cookie';
 
-<<<<<<< HEAD
-=======
+
 function getStudents() {
   const cookies = new Cookies();
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
@@ -33,7 +32,7 @@ function deleteStudent(id) {
       .then((data) => data.json())
       .catch((err)=>console.log(err));
 };
->>>>>>> 895f619 (Headers Authorization added)
+
 const Students = () => {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   const URL = `${baseUrl}/api/students`;
@@ -46,14 +45,6 @@ const Students = () => {
         .then((data) => {
           setLoading(false);
           setStudents(data);
-<<<<<<< HEAD
-        })
-        .catch((err) => {
-          setLoading(false);
-          console.log(err);
-        });
-  }, [URL]);
-=======
         },
         )
         .catch((err)=>console.log(err));
@@ -67,7 +58,6 @@ const Students = () => {
       alert('not deleted');
     }
   };
->>>>>>> 895f619 (Headers Authorization added)
 
   if (loading) {
     return <Loading />;
