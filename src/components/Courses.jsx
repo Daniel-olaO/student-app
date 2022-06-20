@@ -1,11 +1,24 @@
 import {React, useState, useEffect} from 'react';
-import {Card, Row, Container, Accordion} from 'react-bootstrap';
+import {Card, Row, Container, Accordion, Button} from 'react-bootstrap';
 import Loading from './Loading';
 import CourseForm from './CourseForm';
 
-const Course = () => {
+function deleteCourse(code) {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
-  const URL =`${baseUrl}/api/courses`;
+  return fetch(`${baseUrl}/api/courses/deleteCourse${code}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'DELETE',
+  })
+      .then((data) => data.json())
+      .catch((err)=>console.log(err));
+};
+
+
+const Courses = () => {
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
+  const URL = `${baseUrl}/api/courses`;
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -19,6 +32,16 @@ const Course = () => {
         });
   }, [URL]);
 
+  const handleClick = async (code) => {
+    const response = await deleteCourse(code);
+    console.log(response);
+    if (response) {
+      alert('deleted');
+    } else {
+      alert('not deleted');
+    }
+  };
+
   if (loading) {
     return <Loading />;
   } else {
@@ -31,6 +54,13 @@ const Course = () => {
                 <Accordion.Item>
                   <Accordion.Header>
                     {course.code}: {course.name}
+                    <Button variant="danger"
+                      onClick={
+                        ()=>handleClick(course.code)
+                      }
+                    >
+                      Delete
+                    </Button>
                   </Accordion.Header>
                   <Accordion.Body>
                     {course.professor}
@@ -54,4 +84,4 @@ const Course = () => {
   }
 };
 
-export default Course;
+export default Courses;

@@ -1,9 +1,12 @@
 import {React, useState, useEffect} from 'react';
 import {Container, Row, Card, Badge} from 'react-bootstrap';
+
 import {useParams} from 'react-router-dom';
 import Loading from './Loading';
 
 const Student = () => {
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
+  const URL = `${baseUrl}/api/students`;
   const {id} = useParams();
   const [student, setStudent] = useState({});
   const [loading, setLoading] = useState(true);
@@ -11,7 +14,7 @@ const Student = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`url/${id}`)
+    fetch(`${URL}/${id}`)
         .then((response) => response.json())
         .then((data) => {
           setLoading(false);
