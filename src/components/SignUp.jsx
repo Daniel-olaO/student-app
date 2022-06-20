@@ -46,6 +46,7 @@ const SignUp = () => {
   return (
     <Container>
       <Row>
+        <h1>Sign Up</h1>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>Username</Form.Label>
