@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from 'react';
-import {Card, Row, Container, Accordion} from 'react-bootstrap';
+import {Card, Row, Container, Accordion, Button} from 'react-bootstrap';
 import Loading from './Loading';
 import CourseForm from './CourseForm';
 import Cookies from 'universal-cookie';
@@ -49,6 +49,15 @@ const Courses = () => {
         )
         .catch((err)=>console.log(err));
   }, []);
+  const handleClick = async (code) => {
+    const response = await deleteCourse(code);
+    console.log(response);
+    if (response) {
+      alert('deleted');
+    } else {
+      alert('not deleted');
+    }
+  };
 
   if (loading) {
     return <Loading />;
@@ -62,6 +71,13 @@ const Courses = () => {
                 <Accordion.Item>
                   <Accordion.Header>
                     {course.code}: {course.name}
+                    <Button variant="danger"
+                      onClick={
+                        ()=>handleClick(course.code)
+                      }
+                    >
+                      Delete
+                    </Button>
                   </Accordion.Header>
                   <Accordion.Body>
                     {course.professor}

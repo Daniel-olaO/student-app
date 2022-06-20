@@ -1,10 +1,9 @@
 import {React, useState, useEffect} from 'react';
-import {Container, Row, Card} from 'react-bootstrap';
+import {Container, Row, Card, Button} from 'react-bootstrap';
 import {Navigate} from 'react-router';
 import Loading from './Loading';
 import StudentForm from './StudentForm';
 import Cookies from 'universal-cookie';
-
 
 function getStudents() {
   const cookies = new Cookies();
@@ -74,6 +73,9 @@ const Students = () => {
                     {student.firstName} {student.lastName}
                   </Card.Title>
                   <Card.Body>{student.studentId}</Card.Body>
+                  <Button variant="danger"
+                    onClick={() =>handleClick(student.studentId)}
+                  >Delete</Button>
                 </Card>
               </Navigate>
 
