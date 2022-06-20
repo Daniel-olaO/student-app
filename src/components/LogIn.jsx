@@ -1,11 +1,11 @@
 import {React, useState} from 'react';
 import {Container, Row, Form, Button} from 'react-bootstrap';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import '../App.css';
 
 
-async function login(user) {
+function login(user) {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   return fetch(`${baseUrl}/api/users/login`, {
     headers: {
@@ -31,8 +31,10 @@ const LogIn = ({setIsLoggedIn}) => {
       const duration = new Date();
       duration.setTime(duration.getTime() + (1 * 60 * 60 * 1000));
       cookies.set('token', response.token, {path: '/', expires: duration});
+
+      localStorage.setItem('username', response.user);
       setIsLoggedIn(true);
-      navigate('./students');
+      navigate('/home');
     } else {
       setMessage(response.message);
       console.log(message);
@@ -65,6 +67,12 @@ const LogIn = ({setIsLoggedIn}) => {
           </Form.Group>
           <Button variant="primary" type="submit">Login</Button>
         </Form>
+        <h5>
+          New to Student App?
+          <Link to='./signUp'>
+             Create an Account
+          </Link>
+        </h5>
       </Row>
     </Container>
   );
