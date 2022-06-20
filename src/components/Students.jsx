@@ -3,13 +3,28 @@ import {Container, Row, Card, Button} from 'react-bootstrap';
 import {Navigate} from 'react-router';
 import Loading from './Loading';
 import StudentForm from './StudentForm';
+import Cookies from 'universal-cookie';
 
-
+function getStudents() {
+  const cookies = new Cookies();
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
+  return fetch(`${baseUrl}/api/students`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${cookies.get('token')}`,
+    },
+    method: 'GET',
+  })
+      .then((data) => data.json())
+      .catch((err)=>console.log(err));
+}
 function deleteStudent(id) {
+  const cookies = new Cookies();
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   return fetch(`${baseUrl}/api/students/deleteStudent${id}`, {
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Token ${cookies.get('token')}`,
     },
     method: 'DELETE',
   })
@@ -24,19 +39,14 @@ const Students = () => {
 
   useEffect(() => {
     setLoading(true);
-
-    fetch(URL)
-        .then((response) => response.json())
+    getStudents()
         .then((data) => {
-          console.log(data);
           setLoading(false);
           setStudents(data);
-        })
-        .catch((err) => {
-          setLoading(false);
-          console.log(err);
-        });
-  }, [URL]);
+        },
+        )
+        .catch((err)=>console.log(err));
+  }, []);
   const handleClick = async (id) => {
     const response = await deleteStudent(id);
     console.log(response);
