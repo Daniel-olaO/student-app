@@ -1,7 +1,5 @@
-/* eslint-disable require-jsdoc */
-import React from 'react';
 import './App.css';
-import {useState, useEffect} from 'react';
+import {React, useState, useEffect} from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
 import {Route, Routes} from 'react-router-dom';
 import Cookies from 'universal-cookie';

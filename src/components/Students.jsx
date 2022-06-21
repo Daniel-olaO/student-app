@@ -57,7 +57,6 @@ const Students = () => {
       alert('not deleted');
     }
   };
-
   if (loading) {
     return <Loading />;
   } else {

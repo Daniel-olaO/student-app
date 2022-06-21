@@ -69,7 +69,7 @@ const LogIn = ({setIsLoggedIn}) => {
         </Form>
         <h5>
           New to Student App?
-          <Link to='./signUp'>
+          <Link to='/signUp'>
              Create an Account
           </Link>
         </h5>
