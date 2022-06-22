@@ -1,6 +1,6 @@
 import {React, useState, useEffect} from 'react';
 import {Container, Row, Card, Button} from 'react-bootstrap';
-import {Navigate} from 'react-router';
+import {Link} from 'react-router-dom';
 import Loading from './Loading';
 import StudentForm from './StudentForm';
 import Cookies from 'universal-cookie';
@@ -65,7 +65,7 @@ const Students = () => {
         <Row>
           {
             students.map((student) =>(
-              <Navigate Key={student.studentId}
+              <Link Key={student.studentId}
                 to={`url/${student.studentId}`}>
                 <Card>
                   <Card.Title>
@@ -76,7 +76,7 @@ const Students = () => {
                     onClick={() =>handleClick(student.studentId)}
                   >Delete</Button>
                 </Card>
-              </Navigate>
+              </Link>
 
             ))
           }
