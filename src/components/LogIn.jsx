@@ -1,10 +1,11 @@
 import {React, useState} from 'react';
 import {Container, Row, Form, Button} from 'react-bootstrap';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import '../App.css';
 
 
-async function login(user) {
+function login(user) {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   return fetch(`${baseUrl}/api/users/login`, {
     headers: {
@@ -30,8 +31,10 @@ const LogIn = ({setIsLoggedIn}) => {
       const duration = new Date();
       duration.setTime(duration.getTime() + (1 * 60 * 60 * 1000));
       cookies.set('token', response.token, {path: '/', expires: duration});
+
+      localStorage.setItem('username', response.user);
       setIsLoggedIn(true);
-      navigate('./students');
+      navigate('/home');
     } else {
       setMessage(response.message);
       console.log(message);
@@ -41,11 +44,12 @@ const LogIn = ({setIsLoggedIn}) => {
   };
 
   return (
-    <Container>
+    <Container className='container'>
       <Row>
+        <h1>Log In</h1>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>Username</Form.Label>
+          <Form.Group className="login-input">
+            <Form.Label>Username:</Form.Label>
             <Form.Control type="text"
               name="username"
               placeholder='UserName'
@@ -54,15 +58,23 @@ const LogIn = ({setIsLoggedIn}) => {
                 setUsername(e.target.value);
               }} />
           </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Password</Form.Label>
+          <Form.Group className="login-input">
+            <Form.Label>Password:</Form.Label>
             <Form.Control type="password"
               name="password"
               placeholder='Password'
               value={password} onChange={(e)=>setPassword(e.target.value)}/>
           </Form.Group>
-          <Button variant="primary" type="submit">Login</Button>
+          <Button variant="primary"
+            className="btn"
+            type="submit">Login</Button>
         </Form>
+        <h5>
+          New to Student App?
+          <Link to='/signUp'>
+             Create an Account
+          </Link>
+        </h5>
       </Row>
     </Container>
   );

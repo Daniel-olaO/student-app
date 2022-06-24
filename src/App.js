@@ -9,6 +9,9 @@ import NotFound from './components/NotFound';
 import Students from './components/Students';
 import LogIn from './components/LogIn';
 import ProtectedRoute from './components/ProtectedRoute';
+import Homepage from './components/Homepage';
+import SignUp from './components/SignUp';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,10 +24,8 @@ function App() {
       setIsLoggedIn(false);
     }
   }, []);
-
   return (
     <div className="App">
-
       <Container>
         <Row>
           <Col>
@@ -32,6 +33,17 @@ function App() {
               <Route path="/"
                 element={
                   <LogIn setIsLoggedIn={setIsLoggedIn}/>
+                } />
+              <Route path='/signUp'
+                element={
+                  <SignUp/>
+                } />
+
+              <Route path='/home'
+                element={
+                  <ProtectedRoute isAuth={isLoggedIn}>
+                    <Homepage setIsLoggedIn={setIsLoggedIn}/>
+                  </ProtectedRoute>
                 } />
               <Route
                 path='/students'

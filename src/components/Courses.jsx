@@ -1,7 +1,37 @@
 import {React, useState, useEffect} from 'react';
-import {Card, Row, Container, Accordion} from 'react-bootstrap';
+import {Card, Row, Container, Accordion, Button} from 'react-bootstrap';
 import Loading from './Loading';
 import CourseForm from './CourseForm';
+import Cookies from 'universal-cookie';
+
+function getCourses() {
+  const cookies = new Cookies();
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
+  return fetch(`${baseUrl}/api/courses`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${cookies.get('token')}`,
+    },
+    method: 'GET',
+  })
+      .then((data) => data.json())
+      .catch((err)=>console.log(err));
+}
+
+function deleteCourse(code) {
+  const cookies = new Cookies();
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
+  return fetch(`${baseUrl}/api/courses/deleteCourse${code}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${cookies.get('token')}`,
+    },
+    method: 'DELETE',
+  })
+      .then((data) => data.json())
+      .catch((err)=>console.log(err));
+};
+
 
 const Courses = () => {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
@@ -11,13 +41,22 @@ const Courses = () => {
 
   useEffect(()=>{
     setLoading(true);
-    fetch(URL)
-        .then((response) => response.json())
-        .then((data) =>{
-          setLoading(false);
+    getCourses()
+        .then((data) => {
           setCourses(data);
-        });
-  }, [URL]);
+          setLoading(false);
+        },
+        )
+        .catch((err)=>console.log(err));
+  }, []);
+  const handleClick = async (code) => {
+    const response = await deleteCourse(code);
+    if (response) {
+      alert('deleted');
+    } else {
+      alert('not deleted');
+    }
+  };
 
   if (loading) {
     return <Loading />;
@@ -31,6 +70,13 @@ const Courses = () => {
                 <Accordion.Item>
                   <Accordion.Header>
                     {course.code}: {course.name}
+                    <Button variant="danger"
+                      onClick={
+                        ()=>handleClick(course.code)
+                      }
+                    >
+                      Delete
+                    </Button>
                   </Accordion.Header>
                   <Accordion.Body>
                     {course.professor}
