@@ -28,7 +28,6 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await signUp({username, email, password, rePassword});
-    console.log(response);
     if (response.username) {
       setMessage('Successfully signed up!');
       navigate('/');
@@ -48,7 +47,7 @@ const SignUp = () => {
       <Row>
         <h1>Sign Up</h1>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
+          <Form.Group className="login-input">
             <Form.Label>Username</Form.Label>
             <Form.Control type="text"
               name="username"
@@ -59,7 +58,7 @@ const SignUp = () => {
               }
               } />
           </Form.Group>
-          <Form.Group className="mb-3">
+          <Form.Group className="login-input">
             <Form.Label>Email</Form.Label>
             <Form.Control type="email"
               name="email"
@@ -70,7 +69,7 @@ const SignUp = () => {
               }
               } />
           </Form.Group>
-          <Form.Group className="mb-3">
+          <Form.Group className="login-input">
             <Form.Label>Password</Form.Label>
             <Form.Control type="password"
               name="password"
@@ -78,7 +77,7 @@ const SignUp = () => {
               value={password}
               onChange={(e)=>setPassword(e.target.value)}/>
           </Form.Group>
-          <Form.Group className="mb-3">
+          <Form.Group className="login-input">
             <Form.Label>Re-Password</Form.Label>
             <Form.Control type="password"
               name="rePassword"
@@ -86,7 +85,10 @@ const SignUp = () => {
               value={rePassword}
               onChange={(e)=>setRePassword(e.target.value)}/>
           </Form.Group>
-          <Button variant="primary" type="submit">Sign Up</Button>
+          <Button
+            variant="primary"
+            className="btn"
+            type="submit">Sign Up</Button>
         </Form>
         <h5>Already have an account? <Link to ='/'>click here</Link></h5>
       </Row>

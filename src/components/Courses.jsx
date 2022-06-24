@@ -51,7 +51,6 @@ const Courses = () => {
   }, []);
   const handleClick = async (code) => {
     const response = await deleteCourse(code);
-    console.log(response);
     if (response) {
       alert('deleted');
     } else {

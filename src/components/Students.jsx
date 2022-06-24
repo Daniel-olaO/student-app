@@ -50,7 +50,6 @@ const Students = () => {
   }, []);
   const handleClick = async (id) => {
     const response = await deleteStudent(id);
-    console.log(response);
     if (response) {
       alert('deleted');
     } else {
@@ -65,7 +64,7 @@ const Students = () => {
         <Row>
           {
             students.map((student) =>(
-              <Link Key={student.studentId}
+              <Link key={student.studentId}
                 to={`url/${student.studentId}`}>
                 <Card>
                   <Card.Title>
