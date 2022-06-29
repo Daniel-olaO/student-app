@@ -21,7 +21,7 @@ function getStudents() {
 function deleteStudent(id) {
   const cookies = new Cookies();
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
-  return fetch(`${baseUrl}/api/students/deleteStudent${id}`, {
+  return fetch(`${baseUrl}/api/students/deleteStudent/${id}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Token ${cookies.get('token')}`,
@@ -50,6 +50,7 @@ const Students = () => {
   }, []);
   const handleClick = async (id) => {
     const response = await deleteStudent(id);
+    console.log(response);
     if (response) {
       alert('deleted');
     } else {

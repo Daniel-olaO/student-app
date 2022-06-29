@@ -17,7 +17,7 @@ const Homepage = ({setIsLoggedIn}) => {
     setIsLoggedIn(false);
   }
   return (
-    <>
+    <div className="main">
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand>Student - App</Navbar.Brand>
@@ -37,7 +37,7 @@ const Homepage = ({setIsLoggedIn}) => {
       </Navbar>
       {defaultPage && <Students />}
       {!defaultPage && <Courses />}
-    </>
+    </div>
   );
 };
 
