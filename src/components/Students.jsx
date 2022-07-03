@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import Loading from './Loading';
 import StudentForm from './StudentForm';
 import Cookies from 'universal-cookie';
+import '../App.css';
 
 function getStudents() {
   const cookies = new Cookies();

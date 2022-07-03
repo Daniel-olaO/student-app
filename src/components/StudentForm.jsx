@@ -47,11 +47,11 @@ const StudentForm = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}> Launch demo modal</Button>
+      <Button variant="primary" onClick={handleShow}>Add Student</Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Student Entry Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
