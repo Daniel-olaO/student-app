@@ -1,9 +1,7 @@
-import {React, useState} from 'react';
-import {Container, Navbar, Nav, Dropdown} from 'react-bootstrap';
-import {Route, Routes, Link} from 'react-router-dom';
+import {React} from 'react';
+import {Container, Row, Col, Dropdown} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
-import Students from './Students';
-import Courses from './Courses';
+import {Link} from 'react-router-dom';
 import '../App.css';
 
 const Homepage = ({setIsLoggedIn}) => {
@@ -14,32 +12,30 @@ const Homepage = ({setIsLoggedIn}) => {
     setIsLoggedIn(false);
   }
   return (
-    <Container className="main">
-      <Navbar bg="light" expand="lg">
-        <Container>
-          <Navbar.Brand>Student - App</Navbar.Brand>
-          <Nav>
-            <Link to="/students">Students</Link>
-            <Link to="/courses">Courses</Link>
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                {localStorage.getItem('username')}
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item onClick={logOut}>LogOut</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Nav>
-        </Container>
-      </Navbar>
-      <Routes>
-        <Route path="/students">
-          {Students}
-        </Route>
-        <Route path="/courses">
-          {Courses}
-        </Route>
-      </Routes>
+    <Container fluid className='navbar-main'>
+      <Row>
+        <Col className='navBrand'>
+          <h1>Students - App</h1>
+        </Col>
+        <Col className='dropdown'>
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              {localStorage.getItem('username')}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={logOut}>LogOut</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Col>
+      </Row>
+      <Row className='menu'>
+        <Col className='menuItem' style={{marginRight: '1%'}}>
+          <Link to={'/home/students'}>Students</Link>
+        </Col>
+        <Col className='menuItem'>
+          <Link to={'/home/courses'}>Course</Link>
+        </Col>
+      </Row>
     </Container>
   );
 };

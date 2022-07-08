@@ -76,3 +76,16 @@
  width: 100%;
  height: 75px;
 }
+.navbar-main{
+  border: 1px solid black;
+}
+.navBrand{
+  display: flex;
+  justify-content: left;
+}
+.dropdown{
+ text-align: end; 
+}
+.menuItem{
+  width: 50%;
+}
