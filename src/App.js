@@ -36,7 +36,7 @@ function App() {
             <SignUp/>
           } />
 
-        <Route path='/home'
+        <Route path='/home/*'
           element={
             <ProtectedRoute isAuth={isLoggedIn}>
               <Homepage setIsLoggedIn={setIsLoggedIn}/>

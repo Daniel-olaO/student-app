@@ -1,7 +1,9 @@
 import {React} from 'react';
-import {Container, Row, Col, Dropdown} from 'react-bootstrap';
+import {Container, Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
-import {Link} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
+import Students from './Students';
+import Courses from './Courses';
 import '../App.css';
 
 const Homepage = ({setIsLoggedIn}) => {
@@ -12,31 +14,31 @@ const Homepage = ({setIsLoggedIn}) => {
     setIsLoggedIn(false);
   }
   return (
-    <Container fluid className='navbar-main'>
-      <Row>
-        <Col className='navBrand'>
-          <h1>Students - App</h1>
-        </Col>
-        <Col className='dropdown'>
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              {localStorage.getItem('username')}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={logOut}>LogOut</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Col>
-      </Row>
-      <Row className='menu'>
-        <Col className='menuItem' style={{marginRight: '1%'}}>
-          <Link to={'/home/students'}>Students</Link>
-        </Col>
-        <Col className='menuItem'>
-          <Link to={'/home/courses'}>Course</Link>
-        </Col>
-      </Row>
-    </Container>
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand>Students - App</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/home/students">Students</Nav.Link>
+            <Nav.Link href="/home/courses">Courses</Nav.Link>
+            <NavDropdown
+              title={localStorage.getItem('username')}
+              id="basic-nav-dropdown">
+              <NavDropdown.Item onClick={logOut}>LogOut</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+      <Routes>
+        <Route path='/home/students'>
+          {Students}
+        </Route>
+        <Route path='/home/courses'>
+          {Courses}
+        </Route>
+      </Routes>
+    </Navbar>
   );
 };
 
