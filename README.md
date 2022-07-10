@@ -42,9 +42,16 @@ Student App uses the following API:
 ## Authors
 
 Student App was created by:
-[Daniel](https://github.com/Daniel-olaO)
-[LinkedIn](https://www.linkedin.com/in/daniel-adedeji-1a996220a/)
 
-with the guidance of:
-[Russell](https://github.com/Russell-Pollari)
-CEO of [SharpestMinds](https://www.sharpestminds.com/)
+### Daniel Adedeji
+
+- [Github](https://github.com/Daniel-olaO)
+- [LinkedIn](https://www.linkedin.com/in/daniel-adedeji-1a996220a/)
+
+with the memtorship of:
+
+### Russell Pollari
+
+- [Github](https://github.com/Russell-Pollari)
+- CEO of [SharpestMinds](https://www.sharpestminds.com/)
+- [LinkedIn](https://www.linkedin.com/in/russell-pollari/)
