@@ -17,6 +17,8 @@ Student App was Inspired by my college's schedule builder. I wanted to create a 
 
 ## Installation
 
+Use the package manager npm to install Student App.
+
 ```bash
 npm install
 ```
