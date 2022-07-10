@@ -3,12 +3,12 @@
 Student App is a full-stack web application that allows users to create, edit, and delete both student and course records. It also allows users to take and drop courses for each student.
 
 #Table of Contents
-##Motivation
-###Installation
-####Usage
-#####API
-######Tools
-#######Authors
+#Motivation
+#Installation
+#Usage
+#API
+#Tools
+#Authors
 
 #Motivation
 Student App was Inspired by my college's schedule builder. I wanted to create a web application that would allow students manage their courses and their schedule.
