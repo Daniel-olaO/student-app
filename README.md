@@ -4,18 +4,18 @@ Student App is a full-stack web application that allows users to create, edit, a
 
 ## Table of Contents
 
-- [Motivation](##motivation)
-- [Installation](##installation)
-- [Usage](##usage)
-- [API](##api)
-- [Tools](##tools)
-- [Author](##author)
+- [Motivation](#motivation)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API](#api)
+- [Tools](#tools)
+- [Authors](#authors)
 
-## Motivation
+# Motivation
 
 Student App was Inspired by my college's schedule builder. I wanted to create a web application that would allow students to manage their courses and their schedule.
 
-## Installation
+# Installation
 
 Use the package manager npm to install Student App.
 
@@ -23,7 +23,7 @@ Use the package manager npm to install Student App.
 npm install
 ```
 
-## Usage
+# Usage
 
 Use the following commands to start the application.
 
@@ -37,17 +37,17 @@ Users has to be registered and logged in to use the application.
 Users can create, edit, and delete both student and course records.
 Users can take and drop courses for each student.
 
-## Tools
+# Tools
 
 Student App uses the following tools:
 React, React-Router, Express, Node, MongoDB, Mongoose, Bootstrap.
 
-## API
+# API
 
 Student App uses the following API:
 [API Repository](https://github.com/Daniel-olaO/StudentAPI-nodeJs)
 
-## Authors
+# Authors
 
 Student App was created by:
 
