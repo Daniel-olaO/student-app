@@ -4,16 +4,16 @@ Student App is a full-stack web application that allows users to create, edit, a
 
 ## Table of Contents
 
-- Motivation
-- Installation
-- Usage
-- API
-- Tools
-- Authors
+- [Motivation](##motivation)
+- [Installation](##installation)
+- [Usage](##usage)
+- [API](##api)
+- [Tools](##tools)
+- [Author](##author)
 
 ## Motivation
 
-Student App was Inspired by my college's schedule builder. I wanted to create a web application that would allow students manage their courses and their schedule.
+Student App was Inspired by my college's schedule builder. I wanted to create a web application that would allow students to manage their courses and their schedule.
 
 ## Installation
 
@@ -25,6 +25,14 @@ npm install
 
 ## Usage
 
+Use the following commands to start the application.
+
+```bash
+npm start
+```
+
+Users are required to run the student's web server before they can use the application.
+and also set the environment variables for the application.
 Users has to be registered and logged in to use the application.
 Users can create, edit, and delete both student and course records.
 Users can take and drop courses for each student.
