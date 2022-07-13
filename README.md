@@ -32,7 +32,10 @@ npm start
 ```
 
 Users are required to run the student's web server before they can use the application.
-and also set the environment variables for the application.
+and also set the environment variables for the application to work.
+e.g.
+DB_CONNECTION_URL for the connection to the MongoDB database.
+JWT_SECRET for the JWT secret.
 Users has to be registered and logged in to use the application.
 Users can create, edit, and delete both student and course records.
 Users can take and drop courses for each student.
