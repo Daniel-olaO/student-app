@@ -29,40 +29,33 @@ function App() {
       <Routes>
         <Route path="/"
           element={
-            <LogIn setIsLoggedIn={setIsLoggedIn}/>
+            <LogIn setIsLoggedIn={setIsLoggedIn} />
           } />
         <Route path='/signUp'
           element={
-            <SignUp/>
+            <SignUp />
           } />
 
-        <Route path='/home/*'
+        <Route path='home'
           element={
             <ProtectedRoute isAuth={isLoggedIn}>
-              <Homepage setIsLoggedIn={setIsLoggedIn}/>
+              <Homepage setIsLoggedIn={setIsLoggedIn} />
             </ProtectedRoute>
-          } />
-        <Route
-          path='/students'
-          element={
-            <ProtectedRoute isAuth={isLoggedIn}>
+          }>
+          <Route path='courses'
+            element={
+              <Courses />
+            } />
+          <Route path='students'
+            element={
               <Students />
-            </ProtectedRoute>
-          }
-        />
+            } />
+        </Route>
         <Route
           path='/student/:id'
           element={
             <ProtectedRoute isAuth={isLoggedIn}>
               <Student />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='/courses'
-          element={
-            <ProtectedRoute isAuth={isLoggedIn}>
-              <Courses />
             </ProtectedRoute>
           }
         />

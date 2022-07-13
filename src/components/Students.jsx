@@ -51,7 +51,6 @@ const Students = () => {
   }, []);
   const handleClick = async (id) => {
     const response = await deleteStudent(id);
-    console.log(response);
     if (response) {
       alert('deleted');
     } else {
