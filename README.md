@@ -36,6 +36,7 @@ and also set the environment variables for the application to work.
 e.g.
 DB_CONNECTION_URL for the connection to the MongoDB database.
 JWT_SECRET for the JWT secret.
+[API Repository](https://github.com/Daniel-olaO/StudentAPI-nodeJs)
 Users has to be registered and logged in to use the application.
 Users can create, edit, and delete both student and course records.
 Users can take and drop courses for each student.
