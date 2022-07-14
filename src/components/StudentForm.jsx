@@ -2,14 +2,13 @@ import {React, useState} from 'react';
 import {Button, Modal, Form} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
 
-
-async function addStudent(student) {
+function addStudent(student) {
   const cookies = new Cookies();
-  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8080';
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   return fetch(`${baseUrl}/api/students/addStudent`, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${cookies.get('token')}`,
+      'Authorization': `Token ${cookies.get('token')}`,
     },
     method: 'POST',
     body: JSON.stringify(student),
@@ -48,11 +47,11 @@ const StudentForm = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}> Launch demo modal</Button>
+      <Button variant="primary" onClick={handleShow}>Add Student</Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Student Entry Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>

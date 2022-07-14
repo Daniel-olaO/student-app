@@ -1,15 +1,10 @@
-import {React, useState} from 'react';
-import {Container, Navbar, Nav, Dropdown} from 'react-bootstrap';
-import {useNavigate} from 'react-router-dom';
+import {React} from 'react';
+import {Container, Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
-import Students from './Students';
-import Courses from './Courses';
-
+import {Outlet} from 'react-router-dom';
+import '../App.css';
 
 const Homepage = ({setIsLoggedIn}) => {
-  // make the students component the default page
-  const [defaultPage, setDefaultPage] = useState(true);
-
   function logOut() {
     const cookies = new Cookies();
     localStorage.removeItem('username');
@@ -18,27 +13,27 @@ const Homepage = ({setIsLoggedIn}) => {
   }
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand>Student - App</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link onClick={()=>setDefaultPage(true)}>Students</Nav.Link>
-            <Nav.Link onClick={()=>setDefaultPage(false)}>Courses</Nav.Link>
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                {localStorage.getItem('username')}
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item onClick={logOut}>LogOut</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Nav>
+          <Navbar.Brand>Students - App</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/home/students">Students</Nav.Link>
+              <Nav.Link href="/home/courses">Courses</Nav.Link>
+              <NavDropdown
+                title={localStorage.getItem('username')}
+                id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={logOut}>LogOut</NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
-      {defaultPage && <Students />}
-      {!defaultPage && <Courses />}
+      <Outlet />
     </>
   );
 };
+
 
 export default Homepage;

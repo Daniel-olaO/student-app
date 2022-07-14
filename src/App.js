@@ -26,54 +26,41 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Container>
-        <Row>
-          <Col>
-            <Routes>
-              <Route path="/"
-                element={
-                  <LogIn setIsLoggedIn={setIsLoggedIn}/>
-                } />
-              <Route path='/signUp'
-                element={
-                  <SignUp/>
-                } />
+      <Routes>
+        <Route path="/"
+          element={
+            <LogIn setIsLoggedIn={setIsLoggedIn} />
+          } />
+        <Route path='/signUp'
+          element={
+            <SignUp />
+          } />
 
-              <Route path='/home'
-                element={
-                  <ProtectedRoute isAuth={isLoggedIn}>
-                    <Homepage setIsLoggedIn={setIsLoggedIn}/>
-                  </ProtectedRoute>
-                } />
-              <Route
-                path='/students'
-                element={
-                  <ProtectedRoute isAuth={isLoggedIn}>
-                    <Students />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path='/student/:id'
-                element={
-                  <ProtectedRoute isAuth={isLoggedIn}>
-                    <Student />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path='/courses'
-                element={
-                  <ProtectedRoute isAuth={isLoggedIn}>
-                    <Courses />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Col>
-        </Row>
-      </Container>
+        <Route path='home'
+          element={
+            <ProtectedRoute isAuth={isLoggedIn}>
+              <Homepage setIsLoggedIn={setIsLoggedIn} />
+            </ProtectedRoute>
+          }>
+          <Route path='courses'
+            element={
+              <Courses />
+            } />
+          <Route path='students'
+            element={
+              <Students />
+            } />
+        </Route>
+        <Route
+          path='/student/:id'
+          element={
+            <ProtectedRoute isAuth={isLoggedIn}>
+              <Student />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }

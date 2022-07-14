@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import Loading from './Loading';
 import StudentForm from './StudentForm';
 import Cookies from 'universal-cookie';
+import '../App.css';
 
 function getStudents() {
   const cookies = new Cookies();
@@ -21,7 +22,7 @@ function getStudents() {
 function deleteStudent(id) {
   const cookies = new Cookies();
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
-  return fetch(`${baseUrl}/api/students/deleteStudent${id}`, {
+  return fetch(`${baseUrl}/api/students/deleteStudent/${id}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Token ${cookies.get('token')}`,
