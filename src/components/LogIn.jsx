@@ -1,5 +1,5 @@
 import {React, useState} from 'react';
-import {Container, Row, Form, Button} from 'react-bootstrap';
+import {Container, Row, Form, Button, Alert} from 'react-bootstrap';
 import {useNavigate, Link} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import '../App.css';
@@ -23,6 +23,7 @@ const LogIn = ({setIsLoggedIn}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,9 +35,13 @@ const LogIn = ({setIsLoggedIn}) => {
 
       localStorage.setItem('username', response.user);
       setIsLoggedIn(true);
-      navigate('/home');
+      navigate('/home/students');
     } else {
       setMessage(response.message);
+      setShowMessage(true);
+      setTimeout(() => {
+        setShowMessage(false);
+      }, 1000);
       console.log(message);
     }
     setUsername('');
@@ -69,6 +74,17 @@ const LogIn = ({setIsLoggedIn}) => {
             className="btn"
             type="submit">Login</Button>
         </Form>
+        <div className="alert-container">
+          {
+            showMessage && (
+              <Alert variant="danger"
+                className="alert"
+                onClose={()=>setShow(false)} dismissible>
+                {message}
+              </Alert>
+            )
+          }
+        </div>
         <h5>
           New to Student App?
           <Link to='/signUp'>

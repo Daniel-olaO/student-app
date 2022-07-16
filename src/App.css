@@ -70,5 +70,12 @@
   font-weight: bold;
 }
 .container form{
-  margin-bottom: 10%;
+  margin-bottom: 5%;
+}
+.alert{
+  width: 33%;
+}
+.alert-container{
+  display: grid;
+  place-items: center;
 }
