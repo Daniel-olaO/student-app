@@ -37,12 +37,12 @@ const LogIn = ({setIsLoggedIn}) => {
       setIsLoggedIn(true);
       navigate('/home/students');
     } else {
+      console.log(response);
       setMessage(response.message);
       setShowMessage(true);
       setTimeout(() => {
         setShowMessage(false);
-      }, 1000);
-      console.log(message);
+      }, 2000);
     }
     setUsername('');
     setPassword('');

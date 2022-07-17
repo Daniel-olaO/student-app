@@ -1,6 +1,6 @@
 import {React, useState, useEffect} from 'react';
 import {Container, Row, Card, Button} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import Loading from './Loading';
 import StudentForm from './StudentForm';
 import Cookies from 'universal-cookie';
@@ -50,11 +50,14 @@ const Students = () => {
         .catch((err)=>console.log(err));
   }, []);
   const handleClick = async (id) => {
+    const navigate = useNavigate();
     const response = await deleteStudent(id);
-    if (response) {
+    if (response.status === 204) {
       alert('deleted');
+      navigate('/home/students');
     } else {
       alert('not deleted');
+      navigate('/home/students');
     }
   };
   if (loading) {
@@ -62,7 +65,7 @@ const Students = () => {
   } else {
     return (
       <Container>
-        <Row>
+        <Row className='student-row'>
           {
             students.map((student) =>(
               <Link key={student.studentId}

@@ -1,6 +1,7 @@
 import {React, useState} from 'react';
 import {Button, Modal, Form, Alert} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
+import '../App.css';
 
 function addStudent(student) {
   const cookies = new Cookies();
@@ -51,7 +52,9 @@ const StudentForm = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>Add Student</Button>
+      <Button variant="primary" className='modal-btn'
+        style={{width: '66%', margin: 'auto', marginTop: '10px'}}
+        onClick={handleShow}>Add Student</Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
