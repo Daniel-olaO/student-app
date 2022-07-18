@@ -66,7 +66,7 @@ const Students = () => {
           {
             students.map((student) =>(
               <Link key={student.studentId}
-                to={`url/${student.studentId}`}>
+                to={`/home/student/${student.studentId}`}>
                 <Card>
                   <Card.Title>
                     {student.firstName} {student.lastName}

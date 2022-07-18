@@ -1,12 +1,38 @@
 import {React, useState, useEffect} from 'react';
 import {Container, Row, Card, Badge} from 'react-bootstrap';
-
 import {useParams} from 'react-router-dom';
+import Cookies from 'universal-cookie';
 import Loading from './Loading';
+import CourseCatalog from './CourseCatalog';
 
-const Student = () => {
+function getStudent(id) {
+  const cookies = new Cookies();
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
   const URL = `${baseUrl}/api/students`;
+  return fetch(`${URL}/${id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${cookies.get('token')}`,
+    },
+  })
+      .then((response) => response.json());
+}
+function dropCourse(studentId, courseCode) {
+  const cookies = new Cookies();
+  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
+  return fetch(`${baseUrl}/api/students/
+  ${studentId}/dropCourse/${courseCode}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${cookies.get('token')}`,
+    },
+    method: 'PUT',
+  })
+      .then((data) => data.json())
+      .catch((err)=>console.log(err));
+}
+
+const Student = () => {
   const {id} = useParams();
   const [student, setStudent] = useState({});
   const [loading, setLoading] = useState(true);
@@ -14,12 +40,12 @@ const Student = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${URL}/${id}`)
-        .then((response) => response.json())
+    getStudent(id)
         .then((data) => {
-          setLoading(false);
           setStudent(data);
-        });
+          setLoading(false);
+        },
+        );
   }, []);
 
   if (loading) {
@@ -29,7 +55,7 @@ const Student = () => {
       <Container>
         <Row>
           {
-            <Card Key={student.studentId}>
+            <Card key={student.studentId}>
               <Card.Title>{student.firstName} {student.lastName}</Card.Title>
               <Card.Body>
                 <Card.Text>ID: {student.studentId}</Card.Text>
@@ -38,7 +64,8 @@ const Student = () => {
                 <Card.Text>Program: {student.program}</Card.Text>
                 {
                   student.courses.map((course) => {
-                    <Badge Key={course.courseId} bg="secondary">
+                    <Badge key={course.code} bg="secondary"
+                      onClick={dropCourse(student.studentd, course.codes)}>
                       {course.name}
                     </Badge>;
                   })
