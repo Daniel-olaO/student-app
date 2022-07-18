@@ -17,6 +17,7 @@ function getStudent(id) {
   })
       .then((response) => response.json());
 }
+
 function dropCourse(studentId, courseCode) {
   const cookies = new Cookies();
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';

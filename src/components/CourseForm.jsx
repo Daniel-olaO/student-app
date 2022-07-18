@@ -1,5 +1,5 @@
 import {React, useState} from 'react';
-import {Button, Modal, Form} from 'react-bootstrap';
+import {Button, Modal, Form, Alert} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
 
 
@@ -14,8 +14,7 @@ async function addCourse(course) {
     method: 'POST',
     body: JSON.stringify(course),
   })
-      .then((data)=> console.log(data))
-      .catch((err)=> console.log(err));
+      .then((data)=> data.json());
 }
 const StudentForm = () => {
   const [show, setShow] = useState(false);
@@ -24,6 +23,7 @@ const StudentForm = () => {
   const [professor, setProfessor] = useState('');
   const [program, setProgram] = useState('');
   const [message, setMessage] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -33,9 +33,13 @@ const StudentForm = () => {
     const response = await addCourse({code, name, professor, program});
 
     if (response.ok) {
-      setMessage('Student Added!');
+      alert('Course Added!');
     } else {
-      setMessage('Failed to add student!');
+      setMessage(response.message);
+      setShowMessage(true);
+      setTimeout(() => {
+        setShowMessage(false);
+      }, 2000);
     }
   };
 
@@ -45,9 +49,18 @@ const StudentForm = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Course Entry Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          {
+            showMessage && (
+              <div className="alert-container">
+                <Alert variant="danger">
+                  {message}
+                </Alert>
+              </div>
+            )
+          }
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Code:</Form.Label>
