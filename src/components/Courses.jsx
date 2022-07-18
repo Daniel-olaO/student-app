@@ -3,6 +3,7 @@ import {Card, Row, Container, Accordion, Button} from 'react-bootstrap';
 import Loading from './Loading';
 import CourseForm from './CourseForm';
 import Cookies from 'universal-cookie';
+import '../App.css';
 
 function getCourses() {
   const cookies = new Cookies();
@@ -34,8 +35,6 @@ function deleteCourse(code) {
 
 
 const Courses = () => {
-  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
-  const URL = `${baseUrl}/api/courses`;
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
