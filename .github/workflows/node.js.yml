@@ -20,4 +20,4 @@ jobs:
     - name: Install modules
       run: npm install
     - name: RUN ESlint
-      run: eslint . --ext .js,.jsx,.ts,.tsx
+      run: npm run lint
