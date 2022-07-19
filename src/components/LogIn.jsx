@@ -34,7 +34,7 @@ const LogIn = ({setIsLoggedIn}) => {
 
       localStorage.setItem('username', response.user);
       setIsLoggedIn(true);
-      navigate('/home');
+      navigate('/home/students');
     } else {
       setMessage(response.message);
       console.log(message);

@@ -13,8 +13,7 @@ function addStudent(student) {
     method: 'POST',
     body: JSON.stringify(student),
   })
-      .then((data)=> console.log(data))
-      .catch((err)=> console.log(err));
+      .then((data)=> data.json());
 }
 const StudentForm = () => {
   const [show, setShow] = useState(false);

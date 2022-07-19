@@ -50,15 +50,11 @@ function App() {
             element={
               <Students />
             } />
-        </Route>
-        <Route
-          path='/student/:id'
-          element={
-            <ProtectedRoute isAuth={isLoggedIn}>
+          <Route path='student/:id'
+            element={
               <Student />
-            </ProtectedRoute>
-          }
-        />
+            } />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

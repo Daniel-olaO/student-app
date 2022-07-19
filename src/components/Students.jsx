@@ -1,6 +1,6 @@
 import {React, useState, useEffect} from 'react';
 import {Container, Row, Card, Button} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import Loading from './Loading';
 import StudentForm from './StudentForm';
 import Cookies from 'universal-cookie';
@@ -34,8 +34,7 @@ function deleteStudent(id) {
 };
 
 const Students = () => {
-  const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
-  const URL = `${baseUrl}/api/students`;
+  const navigate = useNavigate();
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -53,8 +52,7 @@ const Students = () => {
     const response = await deleteStudent(id);
     if (response) {
       alert('deleted');
-    } else {
-      alert('not deleted');
+      navigate('/home/students');
     }
   };
   if (loading) {
@@ -66,7 +64,7 @@ const Students = () => {
           {
             students.map((student) =>(
               <Link key={student.studentId}
-                to={`url/${student.studentId}`}>
+                to={`/home/student/${student.studentId}`}>
                 <Card>
                   <Card.Title>
                     {student.firstName} {student.lastName}
