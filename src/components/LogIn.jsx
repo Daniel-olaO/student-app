@@ -1,7 +1,8 @@
 import {React, useState} from 'react';
-import {Container, Row, Form, Button, Alert} from 'react-bootstrap';
+import {Container, Row, Form, Button} from 'react-bootstrap';
 import {useNavigate, Link} from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import AlertBox from './AlertBox';
 import '../App.css';
 
 
@@ -74,17 +75,7 @@ const LogIn = ({setIsLoggedIn}) => {
             className="btn"
             type="submit">Login</Button>
         </Form>
-        <div className="alert-container">
-          {
-            showMessage && (
-              <Alert variant="danger"
-                className="alert"
-                onClose={()=>setShow(false)} dismissible>
-                {message}
-              </Alert>
-            )
-          }
-        </div>
+        {showMessage && <AlertBox message={message} />}
         <h5>
           New to Student App?
           <Link to='/signUp'>

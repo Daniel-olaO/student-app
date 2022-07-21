@@ -1,6 +1,7 @@
 import {React, useState} from 'react';
 import {Container, Row, Form, Button, Alert} from 'react-bootstrap';
 import {useNavigate, Link} from 'react-router-dom';
+import AlertBox from './AlertBox';
 import '../App.css';
 
 function signUp(user) {
@@ -94,15 +95,7 @@ const SignUp = () => {
             className="btn"
             type="submit">Sign Up</Button>
         </Form>
-        {
-          showMessage && (
-            <Alert variant="danger"
-              className="alert"
-              onClose={()=>setShowMessage(false)} dismissible>
-              {message}
-            </Alert>
-          )
-        }
+        {showMessage && <AlertBox message={message}/>}
         <h5>Already have an account? <Link to ='/'>click here</Link></h5>
       </Row>
     </Container>

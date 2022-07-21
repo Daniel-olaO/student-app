@@ -1,6 +1,7 @@
 import {React, useState} from 'react';
-import {Button, Modal, Form, Alert} from 'react-bootstrap';
+import {Button, Modal, Form} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
+import AlertBox from './AlertBox';
 import '../App.css';
 
 function addStudent(student) {
@@ -61,15 +62,7 @@ const StudentForm = () => {
           <Modal.Title>Student Entry Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {
-            showMessage && (
-              <div className="alert-container">
-                <Alert variant="danger">
-                  {message}
-                </Alert>
-              </div>
-            )
-          }
+          {showMessage && <AlertBox message={message}/>}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>First Name:</Form.Label>
