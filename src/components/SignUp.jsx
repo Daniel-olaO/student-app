@@ -1,7 +1,8 @@
 import {React, useState} from 'react';
-import {Container, Row, Form, Button} from 'react-bootstrap';
+import {Container, Row, Form, Button, Alert} from 'react-bootstrap';
 import {useNavigate, Link} from 'react-router-dom';
-
+import AlertBox from './AlertBox';
+import '../App.css';
 
 function signUp(user) {
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
@@ -24,6 +25,7 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
   const [message, setMessage] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +35,10 @@ const SignUp = () => {
       navigate('/');
     } else {
       setMessage(response.message);
-      alert(message);
+      setShowMessage(true);
+      setTimeout(() => {
+        setShowMessage(false);
+      }, 2000);
     }
     setUsername('');
     setEmail('');
@@ -90,6 +95,7 @@ const SignUp = () => {
             className="btn"
             type="submit">Sign Up</Button>
         </Form>
+        {showMessage && <AlertBox message={message}/>}
         <h5>Already have an account? <Link to ='/'>click here</Link></h5>
       </Row>
     </Container>
