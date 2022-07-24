@@ -58,7 +58,7 @@ const Students = () => {
     }
   };
   if (loading) {
-    return <Loading />;
+    return <Loading data="Students"/>;
   } else {
     return (
       <Container>
