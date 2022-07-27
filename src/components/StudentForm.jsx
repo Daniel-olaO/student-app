@@ -1,6 +1,8 @@
 import {React, useState} from 'react';
 import {Button, Modal, Form} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
+import AlertBox from './AlertBox';
+import '../App.css';
 
 function addStudent(student) {
   const cookies = new Cookies();
@@ -13,8 +15,7 @@ function addStudent(student) {
     method: 'POST',
     body: JSON.stringify(student),
   })
-      .then((data)=> console.log(data))
-      .catch((err)=> console.log(err));
+      .then((data)=> data.json());
 }
 const StudentForm = () => {
   const [show, setShow] = useState(false);
@@ -24,6 +25,7 @@ const StudentForm = () => {
   const [phone, setPhone] = useState('');
   const [program, setProgram] = useState('');
   const [message, setMessage] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -39,21 +41,28 @@ const StudentForm = () => {
     });
     console.log(response);
     if (response.status === 201) {
-      setMessage('Student Added!');
+      alert('Student Added!');
     } else {
-      setMessage('Failed to add student!');
+      setMessage(response.message);
+      setShowMessage(true);
+      setTimeout(() => {
+        setShowMessage(false);
+      }, 2000);
     }
   };
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>Add Student</Button>
+      <Button variant="primary" className='modal-btn'
+        style={{width: '66%', margin: 'auto', marginTop: '10px'}}
+        onClick={handleShow}>Add Student</Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Student Entry Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          {showMessage && <AlertBox message={message}/>}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>First Name:</Form.Label>

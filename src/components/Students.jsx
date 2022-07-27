@@ -51,7 +51,7 @@ const Students = () => {
   }, []);
   const handleClick = async (id) => {
     const response = await deleteStudent(id);
-    if (response) {
+    if (response.status === 204) {
       alert('deleted');
     } else {
       alert('not deleted');
@@ -62,7 +62,7 @@ const Students = () => {
   } else {
     return (
       <Container>
-        <Row>
+        <Row className='student-row'>
           {
             students.map((student) =>(
               <Link key={student.studentId}
