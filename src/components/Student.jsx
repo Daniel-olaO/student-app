@@ -23,7 +23,7 @@ const Student = () => {
   }, []);
 
   if (loading) {
-    return <Loading data="Stuent's Information"/>;
+    return <Loading loadingMessage="Student's Information"/>;
   } else {
     return (
       <Container>

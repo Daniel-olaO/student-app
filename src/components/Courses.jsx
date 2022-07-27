@@ -58,7 +58,7 @@ const Courses = () => {
   };
 
   if (loading) {
-    return <Loading data="Courses' data"/>;
+    return <Loading loadingMessage="Courses' data"/>;
   } else {
     return (
       <Container>
