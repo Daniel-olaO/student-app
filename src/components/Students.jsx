@@ -58,7 +58,7 @@ const Students = () => {
     }
   };
   if (loading) {
-    return <Loading />;
+    return <Loading loadingMessage="Students"/>;
   } else {
     return (
       <Container>

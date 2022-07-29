@@ -1,13 +1,13 @@
 import React from 'react';
 import {Container, Row, Card} from 'react-bootstrap';
 
-const Loading = () => {
+const Loading = ({loadingMessage=''}) => {
   return (
     <Container>
       <Row>
         <Card>
           <Card.Body>
-            <Card.Title>Loading Students</Card.Title>
+            <Card.Title>Loading {loadingMessage}</Card.Title>
             <Card.Text>Please wait...</Card.Text>
           </Card.Body>
         </Card>
