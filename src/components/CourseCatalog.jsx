@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import {Card, Modal, Button} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
 
@@ -37,7 +37,6 @@ const CourseCatalog = ({studentId}) => {
   const handleShow = () => setShow(true);
 
   useEffect(()=>{
-    setLoading(true);
     getCourses()
         .then((data) => {
           setCourses(data);
@@ -57,10 +56,10 @@ const CourseCatalog = ({studentId}) => {
         <Modal.Body>
           {
             courses.map((course) =>(
-              <Card key={course.coude}
-                onClick={takeCourse(studentId, course.code)}>
+              <Card key={course.code}
+                onClick={()=>takeCourse(studentId, course.code)}>
                 <Card.Title>
-                  {course.courseId}
+                  {course.code}
                 </Card.Title>
                 <Card.Body>
                   {course.courseName}
