@@ -56,23 +56,27 @@ const Student = () => {
       <Container>
         <Row>
           {
-            <Card key={student.studentId}>
-              <Card.Title>{student.firstName} {student.lastName}</Card.Title>
-              <Card.Body>
-                <Card.Text>ID: {student.studentId}</Card.Text>
-                <Card.Text>Email: {student.email}</Card.Text>
-                <Card.Text>Phone: {student.phone}</Card.Text>
-                <Card.Text>Program: {student.program}</Card.Text>
-                {
-                  student.courses.map((course) => {
-                    <Badge key={course.code} bg="secondary"
-                      onClick={dropCourse(student.studentd, course.codes)}>
-                      {course.name}
-                    </Badge>;
-                  })
-                }
-              </Card.Body>
-            </Card>
+            <>
+              <Card key={student.studentId}>
+                <Card.Title>{student.firstName} {student.lastName}</Card.Title>
+                <Card.Body>
+                  <Card.Text>ID: {student.studentId}</Card.Text>
+                  <Card.Text>Email: {student.email}</Card.Text>
+                  <Card.Text>Phone: {student.phone}</Card.Text>
+                  <Card.Text>Program: {student.program}</Card.Text>
+                  {
+                    student.courses.map((course) => {
+                      <Badge key={course.code} bg="secondary"
+                        onClick={
+                          ()=>dropCourse(student.studentd, course.codes)
+                        }>
+                        {course.name}
+                      </Badge>;
+                    })
+                  }
+                </Card.Body>
+              </Card>
+            </>
           }
           {student.length === 0 && (
             <Card>

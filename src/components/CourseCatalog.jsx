@@ -1,7 +1,6 @@
 import React from 'react';
 import {Card, Modal, Button} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
-import Loading from './Loading';
 
 function getCourses() {
   const cookies = new Cookies();
@@ -33,7 +32,6 @@ function takeCourse(studentId, courseCode) {
 const CourseCatalog = ({studentId}) => {
   const [courses, setCourses] = useState([]);
   const [show, setShow] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -43,51 +41,47 @@ const CourseCatalog = ({studentId}) => {
     getCourses()
         .then((data) => {
           setCourses(data);
-          setLoading(false);
         },
         )
         .catch((err)=>console.log(err));
   }, []);
-  if (loading) {
-    return <Loading />;
-  } else {
-    return (
-      <>
-        <Button variant="primary" onClick={handleShow}>Take Course</Button>
 
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Course Catalog</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {
-              courses.map((course) =>(
-                <Card key={course.coude}
-                  onClick={takeCourse(studentId, course.code)}>
-                  <Card.Title>
-                    {course.courseId}
-                  </Card.Title>
-                  <Card.Body>
-                    {course.courseName}
-                  </Card.Body>
-                </Card>
-              ))
-            }
-            {courses.length === 0 &&(
-              <Card>
+  return (
+    <>
+      <Button variant="primary" onClick={handleShow}>Take Course</Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Course Catalog</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {
+            courses.map((course) =>(
+              <Card key={course.coude}
+                onClick={takeCourse(studentId, course.code)}>
+                <Card.Title>
+                  {course.courseId}
+                </Card.Title>
                 <Card.Body>
-                  <Card.Text>no courses found..</Card.Text>
+                  {course.courseName}
                 </Card.Body>
               </Card>
-            )}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-      </>
-    );
-  }
+            ))
+          }
+          {courses.length === 0 &&(
+            <Card>
+              <Card.Body>
+                <Card.Text>no courses found..</Card.Text>
+              </Card.Body>
+            </Card>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
 };
 
 export default CourseCatalog;
