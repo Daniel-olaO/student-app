@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Row, Card} from 'react-bootstrap';
 
-const Loading = ({loadingMessage}) => {
+const Loading = ({loadingMessage=''}) => {
   return (
     <Container>
       <Row>
