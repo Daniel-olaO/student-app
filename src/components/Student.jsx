@@ -76,6 +76,7 @@ const Student = () => {
                   }
                 </Card.Body>
               </Card>
+              <CourseCatalog studentId={student.studentId} />
             </>
           }
           {student.length === 0 && (
