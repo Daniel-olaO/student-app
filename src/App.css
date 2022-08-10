@@ -69,22 +69,24 @@
   float: left;
   font-weight: bold;
 }
-.container form{
-  margin-bottom: 5%;
-}
-.alert{
+.alert {
   width: 33%;
 }
-.alert-container{
+.alert-container {
   display: grid;
   place-items: center;
 }
-.student-row{
+.student-row {
   width: 100%;
 }
-.student-row a, .card{
+.student-row a,
+.card {
   margin-bottom: 1%;
 }
-.modal-btn{
+
+.modal-btn {
   width: 66%;
+}
+.container form{
+  margin-bottom: 5%;
 }

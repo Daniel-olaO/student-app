@@ -1,8 +1,11 @@
 import React from 'react';
+import '../App.css';
 
 const NotFound = () => {
   return (
-    <h1>Not  Found</h1>
+    <div className='not-found'>
+      <iframe src="https://giphy.com/embed/UoeaPqYrimha6rdTFV" width="480" height="270" frameBorder="0" className="giphy-embed" allowFullScreen></iframe>
+    </div>
   );
 };
 
