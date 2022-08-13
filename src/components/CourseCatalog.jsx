@@ -18,14 +18,15 @@ function getCourses() {
 function takeCourse(studentId, courseCode) {
   const cookies = new Cookies();
   const baseUrl = process.env.API_BASE_URL || 'http://localhost:8000';
-  return fetch(`${baseUrl}/api/students/
-  ${studentId}/takeCourse/${courseCode}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Token ${cookies.get('token')}`,
-    },
-    method: 'PUT',
-  })
+  return fetch(
+      `${baseUrl}/api/students/${studentId}/takeCourse/${courseCode}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${cookies.get('token')}`,
+        },
+        method: 'PUT',
+      })
       .then((data) => data.json())
       .catch((err)=>console.log(err));
 }
@@ -40,8 +41,7 @@ const CourseCatalog = ({studentId}) => {
     getCourses()
         .then((data) => {
           setCourses(data);
-        },
-        )
+        })
         .catch((err)=>console.log(err));
   }, []);
 
@@ -54,6 +54,7 @@ const CourseCatalog = ({studentId}) => {
           <Modal.Title>Course Catalog</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <h4>Select a course to take</h4>
           {
             courses.map((course) =>(
               <Card key={course.code}
