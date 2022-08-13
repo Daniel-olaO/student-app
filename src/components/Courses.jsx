@@ -78,8 +78,10 @@ const Courses = () => {
                     </Button>
                   </Accordion.Header>
                   <Accordion.Body>
-                    {course.professor}
-                    {course.program}
+                    <h5>Professor: {course.professor}</h5>
+                    <h5>Program: {course.program}</h5>
+                    <h5>Description:</h5>
+                    <p>{course.description}</p>
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>

@@ -23,6 +23,7 @@ const StudentForm = () => {
   const [name, setName] = useState('');
   const [professor, setProfessor] = useState('');
   const [program, setProgram] = useState('');
+  const [description, setDescription] = useState('');
   const [message, setMessage] = useState('');
   const [showMessage, setShowMessage] = useState(false);
 
@@ -31,7 +32,12 @@ const StudentForm = () => {
   const handleSubmit = async (e) =>{
     e.preventDefault();
 
-    const response = await addCourse({code, name, professor, program});
+    const response = await addCourse({
+      code,
+      name,
+      professor,
+      program,
+      description});
 
     if (response.ok) {
       alert('Course Added!');
@@ -46,7 +52,7 @@ const StudentForm = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}> Launch demo modal</Button>
+      <Button variant="primary" onClick={handleShow}>Course Entry Form</Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -84,6 +90,14 @@ const StudentForm = () => {
               <Form.Control type="text" placeholder="ABC"
                 value={program} onChange={(e)=>{
                   setProgram(e.target.value);
+                }} required/>
+            </Form.Group>
+            <Form.Group className="mb-3"
+              controlId="exampleForm.ControlTextarea1">
+              <Form.Label>Description:</Form.Label>
+              <Form.Control as="textarea" rows={3}
+                value={description} onChange={(e)=>{
+                  setDescription(e.target.value);
                 }} required/>
             </Form.Group>
             <Button variant="primary" type="submit">Add Course</Button>
